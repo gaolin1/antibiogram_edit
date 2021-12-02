@@ -9,24 +9,27 @@ def main():
     # print(df)
     df = convert_to_num(df)
     df = convert_isolate_to_str(df)
-    df = mask(df, 'E. coli organism grouper', 'Nitrofurantoin (Urine)')
+    df = mask(df, 'E. coli organism grouper', 'TOB -  TOBRAMYCIN')
     df = flag_column(df)
-    # print(df.columns)
+    #print(df)
     title = title_combine()
-    df_color = df.style.set_caption(title) \
-        .applymap(apply_color) \
-        .set_table_styles(style()) \
-        # .applymap(apply_color) \
-    # print(df_color)
-    html = df_color.render()
-    # print(html)
+    df_color = apply_style(df,title)  
+    html = df_color.render()    
     html = add_footer(html)
     to_html(html)
 
+"useless stuff below"
     # write_to_html(html)
     # dfi.export(df_color, 'D:\Downloads\color.png')
 
     # export_df(df_color)
+
+def apply_style(df,title):
+    df_color = df.style.set_caption(title) \
+        .applymap(apply_color) \
+        .set_table_styles(style()) \
+        # .applymap(apply_color) \
+    return df_color
 
 
 def add_footer(html):
@@ -252,7 +255,7 @@ def style():
                                           'border-style: solid;'
                                           'border-width: 3px;'
                                           'border-color: black;'
-                                          'font-size: 17pt')]),
+                                          'font-size: 16pt')]),
         dict(selector="tr:hover th", props=[("background-color", '#ffffb3')]),
         dict(selector="th:hover", props=[("background-color", '#ffffb3')]),
         dict(selector='caption', props=caption_props),
