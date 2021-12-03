@@ -242,20 +242,24 @@ def style():
         ('word-wrap', 'break-word')
     ]
 
+
+    hover_props = [
+        ('font-color', '#ffffff'),
+        ('text-align', 'center'),
+        ('font-weight', 'bold'),
+        ('border-style', 'solid'),
+        ('border-width', '3px'),
+        ('border-color', 'black'),
+        ('font-size', '16pt')
+    ]
+
+
     # Set table styles
     styles = [
         dict(selector="th", props=th_props),
         dict(selector="td", props=td_props),
         # dict(selector="td:hover th", props=[("background-color", '#ffffb3')]),
-        dict(selector="td:hover", props=[("background-color",
-                                          'background-color: red; '
-                                          'font-color: #ffffff'
-                                          'text-align: center;'
-                                          'font-weight: bold; '
-                                          'border-style: solid;'
-                                          'border-width: 3px;'
-                                          'border-color: black;'
-                                          'font-size: 16pt')]),
+        dict(selector="td:hover", props=hover_props),
         dict(selector="tr:hover th", props=[("background-color", '#ffffb3')]),
         dict(selector="th:hover", props=[("background-color", '#ffffb3')]),
         dict(selector='caption', props=caption_props),
@@ -264,7 +268,6 @@ def style():
         #dict(selector="", props=('border-collapse', 'collapse'))
         # dict(selector="tr:hover td", props=[("background-color", '#ffffb3')]),
         # magnify()
-
     ]
     return styles
 
