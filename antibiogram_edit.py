@@ -231,10 +231,6 @@ def style():
         ('font-weight', 'bold'),
     ]
 
-    index_props = [
-        ('color', 'darkgrey'),
-    ]
-
     table_props = [
         ('border-collapse', 'collapse'),
         ('table-layout', 'fixed'),
@@ -245,7 +241,7 @@ def style():
 
     hover_props = [
         ('font-color', '#ffffff'),
-        ('text-align', 'center'),
+        #('text-align', 'center'),
         ('font-weight', 'bold'),
         ('border-style', 'solid'),
         ('border-width', '3px'),
@@ -253,17 +249,24 @@ def style():
         ('font-size', '16pt')
     ]
 
+    rotate_props = [
+        ('writing-mode', 'vertical-rl'),
+        ('transform', 'rotateZ(-90deg)'),
+        ('height', '140px'),
+        ('border-width', '1px'),
+        ('border-style', 'solid')
+    ]
 
     # Set table styles
     styles = [
-        dict(selector="th", props=th_props),
+        dict(selector='th.col_heading', props=rotate_props),
+        dict(selector="th.row_heading", props=th_props),
         dict(selector="td", props=td_props),
         # dict(selector="td:hover th", props=[("background-color", '#ffffb3')]),
         dict(selector="td:hover", props=hover_props),
         dict(selector="tr:hover th", props=[("background-color", '#ffffb3')]),
         dict(selector="th:hover", props=[("background-color", '#ffffb3')]),
         dict(selector='caption', props=caption_props),
-        dict(selector='tr: .index_name', props=index_props),
         dict(selector="", props=table_props),
         #dict(selector="", props=('border-collapse', 'collapse'))
         # dict(selector="tr:hover td", props=[("background-color", '#ffffb3')]),
