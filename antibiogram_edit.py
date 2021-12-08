@@ -9,7 +9,7 @@ def main():
     # print(df)
     df = convert_to_num(df)
     df = convert_isolate_to_str(df)
-    df = mask(df, 'E. coli organism grouper', 'TOB -  TOBRAMYCIN')
+    df = mask(df, 'E. coli organism grouper', 'TOBRAMYCIN')
     df = flag_column(df)
     #print(df)
     title = title_combine()
@@ -54,7 +54,7 @@ def title_combine():
 
 
 def flag_column(df):
-    df = df.rename(columns={"HLG - High-Level Gentamicin": "HLG - High-Level Gentamicin**"})
+    df = df.rename(columns={"High-Level Gentamicin": "High-Level Gentamicin**"})
     return df
 
 
@@ -203,8 +203,8 @@ def style():
                             ('font-size', '12pt')])
                 ]
 
-    th_props = [
-        ('font-size', '15px'),
+    th_row_heading_props = [
+        ('font-size', '13pt'),
         ('text-align', 'center'),
         ('font-weight', 'bold'),
         # ('color', '#6d6d6d'),
@@ -218,11 +218,12 @@ def style():
 
     # Set CSS properties for td elements in dataframe
     td_props = [
-        ('font-size', '15px'),
+        ('font-size', '15pt'),
         ('border-width', '0.01em'),
         ('border-style', 'solid'),
         # ("border-collapse", "collapse"),
-        ('margin', '0px')
+        ('margin', '0px'),
+        ('max-width', '100%')
     ]
 
     caption_props = [
@@ -234,7 +235,6 @@ def style():
     table_props = [
         ('border-collapse', 'collapse'),
         ('table-layout', 'fixed'),
-        ('width', '100%'),
         ('word-wrap', 'break-word')
     ]
 
@@ -246,26 +246,29 @@ def style():
         ('border-style', 'solid'),
         ('border-width', '3px'),
         ('border-color', 'black'),
-        ('font-size', '16pt')
+        ('font-size', '18pt')
     ]
 
-    rotate_props = [
+    th_column_header_props = [
         ('writing-mode', 'vertical-rl'),
         ('transform', 'rotateZ(-90deg)'),
-        ('height', '140px'),
-        ('border-width', '1px'),
-        ('border-style', 'solid')
+        ('border-width', '0.1px'),
+        ('border-style', 'solid'),
+        ('padding', '0px 0px 0px 0px'),
+        ('height', '300px'),
+        ('width', '10px'),
+        ('font-size', '12pt')
     ]
 
     # Set table styles
     styles = [
-        dict(selector='th.col_heading', props=rotate_props),
-        dict(selector="th.row_heading", props=th_props),
+        dict(selector='th.col_heading', props=th_column_header_props),
+        dict(selector="th.row_heading", props=th_row_heading_props),
         dict(selector="td", props=td_props),
         # dict(selector="td:hover th", props=[("background-color", '#ffffb3')]),
         dict(selector="td:hover", props=hover_props),
-        dict(selector="tr:hover th", props=[("background-color", '#ffffb3')]),
-        dict(selector="th:hover", props=[("background-color", '#ffffb3')]),
+        dict(selector="tr:hover th.row_heading", props=[("background-color", '#ffffb3')]),
+        #dict(selector="th:hover", props=[("background-color", '#ffffb3')]),
         dict(selector='caption', props=caption_props),
         dict(selector="", props=table_props),
         #dict(selector="", props=('border-collapse', 'collapse'))
