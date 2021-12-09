@@ -40,7 +40,10 @@ def add_footer(html):
                   '</p>' \
                   '<p>' \
                   '** For use in combination with Ampicillin or Vancomycin for synergy.' \
-                  '</p>'
+                  '</p>'\
+                  '<p>'\
+                 ' *** N/R = Not Recommended'\
+                 '</p>'
     return html
 
 
@@ -134,7 +137,7 @@ def write_to_html(html):
 
 def mask(data, row_label, column_label):
     if row_label and column_label in data:
-        data.loc[row_label, column_label] = "Not recommended"
+        data.loc[row_label, column_label] = "N/R"
         return data
     else:
         return data
@@ -207,7 +210,7 @@ def style():
         ('font-size', '13pt'),
         ('text-align', 'center'),
         ('font-weight', 'bold'),
-        # ('color', '#6d6d6d'),
+        #('color', '#6d6d6d'),
         ('background-color', '#f7f7f9'),
         ('border-style', 'solid'),
         ('border-width', '1px'),
@@ -218,12 +221,12 @@ def style():
 
     # Set CSS properties for td elements in dataframe
     td_props = [
-        ('font-size', '15pt'),
-        ('border-width', '0.01em'),
+        ('font-size', '14pt'),
+        ('border-width', '1px'),
         ('border-style', 'solid'),
-        # ("border-collapse", "collapse"),
-        ('margin', '0px'),
-        ('max-width', '100%')
+        #("border-collapse", "collapse"),
+        #('margin', '0px'),
+        ('width', '30px')
     ]
 
     caption_props = [
@@ -246,18 +249,20 @@ def style():
         ('border-style', 'solid'),
         ('border-width', '3px'),
         ('border-color', 'black'),
-        ('font-size', '18pt')
+        ('font-size', '14pt')
     ]
-
+#transform works in chrome only at the moment, different behavior with safari (-90 deg vs. 180 deg for chrome), even with webkit prefix
     th_column_header_props = [
-        ('writing-mode', 'vertical-rl'),
-        ('transform', 'rotateZ(-90deg)'),
+        ('writing-mode', 'vertical-lr'),
+        #('transform', 'rotateZ(180deg)'),
+        #('-webkit-transform', 'rotateZ(270deg)'),
         ('border-width', '0.1px'),
         ('border-style', 'solid'),
-        ('padding', '0px 0px 0px 0px'),
+        ('padding', '5px 5px 5px 5px'),
         ('height', '300px'),
         ('width', '10px'),
-        ('font-size', '12pt')
+        ('font-size', '13pt'),
+        ('text-align', 'center')
     ]
 
     # Set table styles
