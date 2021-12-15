@@ -1,7 +1,10 @@
 import pandas as pd
-import openpyxl as openpyxl
+import openpyxl 
 from selenium import webdriver
 import base64
+import sys
+import numpy as np
+import cv2
 #import pdfkit
 #from weasyprint import HTML, CSS
 
@@ -16,16 +19,39 @@ def main():
     footer = add_footer()
     html = make_real_html(df, title, footer)
     html = change_tag(html)
-    export_to_png(html)
+    export_to_png(html, title)
     #write_to_html(html)
 
-def export_to_png(html):
-    driver = webdriver.Firefox()
+def crop_image(image):
+    img = cv2.imread(image) # Read in the image and convert to grayscale
+    #img = img[:-20,:-20] # Perform pre-cropping
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = 255*(gray < 128).astype(np.uint8) # To invert the text to white
+    gray = cv2.morphologyEx(gray, cv2.MORPH_OPEN, np.ones((2, 2), dtype=np.uint8)) # Perform noise filtering
+    coords = cv2.findNonZero(gray) # Find all non-zero points (text)
+    x, y, w, h = cv2.boundingRect(coords) # Find minimum spanning bounding box
+    x = 0
+    y = 0 #sets starting point to be 0,0
+    h = h + 50 #extends the height for extra whitespace
+    rect = img[y:y+h, x:x+w] # Crop the image - note we do this on the original image
+    cv2.imshow("Cropped", rect) # Show it
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    cv2.imwrite(image, rect) # Save the image
+
+def export_to_png(html, title):
+    if sys.platform == "win32":
+        driver = webdriver.Firefox()
+    if sys.platform == "darwin":
+        driver = webdriver.Firefox(executable_path = '/usr/local/bin/geckodriver')
+    #install geckodriver for mac (copy to /usr/local/bin/) or windows (copy to Python/Scripts)
     html_base64 = base64.b64encode(html.encode('utf-8')).decode()
     #print(html_base64)
     driver.get("data:text/html;base64," + html_base64)
-    driver.save_screenshot('test.png')
+    driver.find_element_by_tag_name('body').screenshot(title + '.png')
     driver.quit()
+    image = './' + title + '.png'
+    crop_image(image)
 
 
 def mask(data, row_label, column_label):
@@ -95,7 +121,7 @@ def apply_color(val):
     return val
 
 def add_footer():
-    footer = '<p>* Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p><p>** For use in combination with Ampicillin or Vancomycin for synergy. </p><p>*** N/R = Not Recommended. </p>'
+    footer = '<p>* N/R = Not Recommended. </p><p>** For use in combination with Ampicillin or Vancomycin for synergy. </p><p>*** Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p>'
     return footer
 
 def write_to_html(html):
@@ -131,7 +157,6 @@ def ask_for_location():
 
 def ask_for_year():
     year = input('\nPlease enter year for the Antibiogram (e.g. 2020): ')
-    year = year + ' '
     return year
 
 
@@ -188,6 +213,7 @@ def make_real_html(df, title,footer):
     message_style = """
 <style type="text/css" media="screen">
     table {
+        font-family: 'Times New Roman', Times, serif;
         border-collapse: collapse;
         table-layout: fixed;
         word-wrap: break-word;
@@ -195,35 +221,41 @@ def make_real_html(df, title,footer):
 
     tr {
         border: 1px solid;
-        font-size: 12pt;
+        font-size: 8pt;
         text-align: center;
     }
 
     td {
-        font-size: 12pt;
         border: 1px solid;
+        padding: 3px;
+    }
+
+    td:nth-child(1) {
+        font-style: italic;
+        text-align: left;
+        padding: 3px;
     }
 
     .color_red {
-        background-color: red;
+        background-color: #fe0000;
         text-align: center;
     }
 
     .color_yellow {
-        background-color: yellow;
+        background-color: #ffff00;
         text-align: center;
     }
 
     .color_green {
-        background-color: green;
+        background-color: #9acc00;
         text-align: center;
     }
 
     th {
+        font-weight: normal;
         writing-mode: sideways-lr;
-        max-width: 90px;
-        min-width: 30px;
-        font-size: 12pt;
+        min-width: 20px;
+        font-size: 8pt;
         padding: 5px 5px 5px 5px;
         border: 1px solid;
     }
@@ -233,11 +265,12 @@ def make_real_html(df, title,footer):
         border-style: solid;
         border-width: 2px;
         border-color: black;
-        font-size: 12pt;
+        font-size: 7.8pt;
     }
 
     h2 {
-        text-align: left;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 10pt;
     }
 
     .hide {
@@ -246,6 +279,11 @@ def make_real_html(df, title,footer):
         border-right-color: black;
         border-bottom-color: black;
         text-align: center;
+    }
+
+    p {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 8pt;
     }
   </style>
 </head>

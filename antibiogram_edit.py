@@ -1,5 +1,6 @@
 import pandas as pd
 import openpyxl as openpyxl
+import pdfkit
 #from bs4 import BeautifulSoup
 #import dataframe_image as dfi
 
@@ -128,11 +129,13 @@ def ask_for_site():
 
 
 def write_to_html(html):
-    write_path = input("Enter location and name for output html file: ")
+    write_path = 'temp'
     write_path = write_path + '.html'
     text_file = open(write_path, "w")
     text_file.write(html)
     text_file.close()
+    with open('temp.html') as f:
+        pdfkit.from_file(f, 'out.pdf')
 
 
 def mask(data, row_label, column_label):
@@ -186,11 +189,14 @@ def convert_isolate_to_str(df):
 
 
 def to_html(html):
-    write_path = input("Enter location and name for output html file: ")
+    #write_path = input("Enter location and name for output html file: ")
+    write_path = 'temp'
     write_path = write_path + '.html'
     text_file = open(write_path, "w")
     text_file.write(html)
     text_file.close()
+    with open('temp.html') as f:
+        pdfkit.from_file(f, 'out.pdf')
 
 
 def style():
