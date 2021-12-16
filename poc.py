@@ -1,10 +1,15 @@
 import pandas as pd
 import openpyxl 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import base64
 import sys
 import numpy as np
 import cv2
+import msoffcrypto
+import io
+from io import BytesIO
+from PIL import Image
 #import pdfkit
 #from weasyprint import HTML, CSS
 
@@ -19,7 +24,8 @@ def main():
     footer = add_footer()
     html = make_real_html(df, title, footer)
     html = change_tag(html)
-    export_to_png(html, title)
+    image = export_to_png(html, title)
+    crop_image(image)
     #write_to_html(html)
 
 def crop_image(image):
@@ -34,9 +40,9 @@ def crop_image(image):
     y = 0 #sets starting point to be 0,0
     h = h + 50 #extends the height for extra whitespace
     rect = img[y:y+h, x:x+w] # Crop the image - note we do this on the original image
-    cv2.imshow("Cropped", rect) # Show it
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.imshow("Cropped", rect) # Show it
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
     cv2.imwrite(image, rect) # Save the image
 
 def export_to_png(html, title):
@@ -48,10 +54,18 @@ def export_to_png(html, title):
     html_base64 = base64.b64encode(html.encode('utf-8')).decode()
     #print(html_base64)
     driver.get("data:text/html;base64," + html_base64)
-    driver.find_element_by_tag_name('body').screenshot(title + '.png')
+    image = driver.find_element(By.TAG_NAME, 'body').screenshot(title + '.png')
     driver.quit()
     image = './' + title + '.png'
-    crop_image(image)
+    return image
+
+def get_concat_v_cut(im1, im2, im3):
+    dst = Image.new(
+        'RGB', (min(im1.width, im2.width, im3.width), im1.height + im2.height + im3.height))
+    dst.paste(im1, (0, 0))
+    dst.paste(im2, (0, im1.height))
+    dst.paste(im3, (0, im2.height))
+    return dst
 
 
 def mask(data, row_label, column_label):
@@ -114,10 +128,10 @@ def apply_color(val):
     yellow = 'yellow' + str(val)
     if type(val) in [float, int]:
         if val >= 90:
-            return red
-        elif val >= 60:
             return green
-        return yellow
+        elif val >= 60:
+            return yellow
+        return red
     return val
 
 def add_footer():
@@ -136,7 +150,7 @@ def title_combine():
     title_type = ask_for_type()
     title_location = ask_for_location()
     title_site = ask_for_site()
-    title = title_year + title_location + title_type + ' Antibiogram - ' + title_site
+    title = title_year + title_location + title_type + 'Antibiogram - ' + title_site
     return title
 
 def ask_for_location():
@@ -227,7 +241,7 @@ def make_real_html(df, title,footer):
 
     td {
         border: 1px solid;
-        padding: 3px;
+        padding: 0px;
     }
 
     td:nth-child(1) {
@@ -300,8 +314,15 @@ def make_real_html(df, title,footer):
     return messages
 
 def import_df():
+    decrypted = io.BytesIO()
     read_path = input("Enter antibiogram file path: ")
-    df = pd.read_excel(read_path, "Sheet1")
+    key = input("Enter File Password: ")
+    with open(read_path, "rb") as f:
+        file = msoffcrypto.OfficeFile(f)
+        file.load_key(password=key)
+        file.decrypt(decrypted)
+    df = pd.read_excel(decrypted)
+    #print(df)
     return df
 
 if __name__ == '__main__':
