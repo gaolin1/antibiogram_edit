@@ -7,6 +7,7 @@
 4. [openpyxl](https://openpyxl.readthedocs.io/en/stable/) (command: `pip install openpyxl`)
 5. [msoffcypto](https://github.com/nolze/msoffcrypto-tool) (command: `pip install msoffcrypto-tool`)
 6. [numpy](https://numpy.org/install/) (command: `pip install numpy`)
+- Additional required program: [Firefox](https://www.mozilla.org/en-CA/firefox/products/) (for webpage rendering)
 ---
 
 This script has one main function: take the Epic exported antibiogram file and performs data transformation, finally ouputs with firefox engine for a png file within the same directory.
@@ -22,10 +23,10 @@ This script has one main function: take the Epic exported antibiogram file and p
 > <img width="417" alt="image" src="https://user-images.githubusercontent.com/28236780/152649476-023b2235-0a78-42a5-a91e-52b09c0c6b58.png">
 ---
 * Enter exported file path from Epic, example: /Users/'User Name'/Downloads/'file name'.xlsx *(on Mac)*
-* Enter *Year* (e.g. 2021) 
-* Select *Type* (e.g. Blood)
-* Select *Facility* (e.g. Hamilton General Hospital)
-* Enter export file path or file name directly to export on the same folder: 
-    * NOTE: html extension will be automatically added <br>
-    * example: 'output file name' *(to export on the same folder of the script)*
-    * example: /Users/'User Name'/Downloads/'output file name' *(to export to an exact folder)* <br>
+   * enter password to the Epic extract file. 
+* Enter year of the antibiogram (e.g. 2021) 
+* Select Type of the antibiogram (e.g. Blood)
+* Select Facility of the antibiorgam (e.g. Hamilton General Hospital)
+* Then the script will perform masking of the antibiotic and organism combination and proceeds to render the file in html format
+   * note: it's helpful to keep the mouse towards to bottom right portion of the screen to avoid the risk of it been taken part of the screenshot as the script will render in Firefox and take screenshot and crop image for excess white space. 
+* the outputed png will be automatically saved on the same directory 
