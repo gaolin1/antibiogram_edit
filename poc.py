@@ -88,7 +88,7 @@ def mask_combined(df, title_type):
         df = mask(df, "Pseudomonas aeruginosa", "Amikacin")
     df = mask(df, "Pseudomonas aeruginosa", "Nitrofurantoin (Urinary)")
     df = mask(df, "Methicillin resistant S.aureus(MRSA)", "Ampicillin")
-    df = mask(df, "Staphylococcus aureus (including MSSA and MRSA)", "Ampicillin")
+    df = mask(df, "Staphylococcus aureus (including MRSA and MSSA)", "Ampicillin")
     #check the 3 lines
     df = mask(df, "Methicillin Sensitive S. aureus(MSSA)", "Ampicillin")
     df = mask(df, "Enterococcus spp", "Cefazolin")
@@ -115,14 +115,17 @@ def mask_combined(df, title_type):
     df = mask(df, "Enterobacter spp", "Amikacin")
     if title_type == " Blood ":
         df = mask(df, "Enterobacter spp", "TMP/SMX")
-    df = mask(df, "MRSA", "Ampicillin")
+    return df
 
 def mask(data, row_label, column_label):
     data = data.reset_index()
     data = data.set_index("Name")
     if row_label and column_label in data:
-        data.loc[row_label, column_label] = "N/R"
-        return data
+        if row_label in data.index:
+            data.loc[row_label, column_label] = "N/R"
+            return data
+        else:
+            return data
     else:
         return data
 
@@ -196,15 +199,37 @@ def add_footer(title_type,gp_or_gn):
     if title_type == ' All Specimen Types Excluding Surveillance ':
         if gp_or_gn == " Gram Negative ":
             footer = "<p> **Cefazolin is not included in this table as automated susceptibility results are not reliable. Refer to the table on blood cultures where alternative methods (Kirby-Bauer) are used for testing. <p>"
+            footer = footer_first + footer + footer_last
+            return footer
+        else:
+            pass
         if gp_or_gn == " Gram Positive ":
             footer = "<p> **Ciprofloxacin monotherapy is NOT recommended for serious infections caused by Staphylococcus spp. <p>"
+            footer = footer_first + footer + footer_last
+            return footer
+        else:
+            pass
+    else:
+        pass
     if title_type == " Blood ":
         if gp_or_gn == " Gram Positive ":
             footer = "<p> ** For use in combination with Ampicillin or Vancomycin for synergy. </p>"
+            footer = footer_first + footer + footer_last
+            return footer
+        else:
+            pass
+    else:
+        pass
     if title_type == " Urine ":
         if gp_or_gn == " Gram Negative ":
             footer = "<p> ** Cefazolin (urinary) predicts for cephalexin and cefprozil when used for treatment of uncomplicated UTIs due to E. coli, K. pneumoniae, and P. mirabilis but not for  therapy of infections other than uncomplicated UTIs. <p>"
-    footer = footer_first + footer + footer_last
+            footer = footer_first + footer + footer_last
+            return footer
+        else:
+            pass
+    else:
+        pass
+    footer = footer_first + footer_last
     return footer
 
 def write_to_html(html):
@@ -216,10 +241,10 @@ def write_to_html(html):
 
 def title_combine():
     title_year = ask_for_year()
-    title_type = ask_for_type()
     title_location = ask_for_location()
-    title_site = ask_for_site()
     title_gp_or_gn = gp_or_gn()
+    title_type = ask_for_type()
+    title_site = ask_for_site()
     title = title_year + title_location + title_gp_or_gn + title_type + 'Antibiogram - ' + title_site
     return title, title_type, title_gp_or_gn
 
