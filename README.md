@@ -14,8 +14,8 @@ This script has one main function: take the Epic exported antibiogram file and p
 ---
 
 *Steps*:
-> to extract from Epic: run antibiogram report for desired location and then export excel file from Epic<br>
-> to run the script, either 
+> First, extract from Epic: run antibiogram report for desired location and then export excel file from Epic<br>
+> Then, to run the script, either 
 > 1. enter `python3 antibiogram_edit.py` in terminal (mac) or cmd (windows)
 > 2. use right click on the antibiogram_edit.py file and launch with **python launcher** 
 ---
