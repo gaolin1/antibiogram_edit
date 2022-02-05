@@ -9,6 +9,7 @@
 6. [numpy](https://numpy.org/install/) (command: `pip install numpy`)
 ---
 This script has one main function: take the Epic exported antibiogram file and performs data transformation and ouputs with firefox engine for a finalized png file.
+
 ---
 *Steps*:
 > export excel file from Epic
