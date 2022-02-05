@@ -19,7 +19,7 @@ This script has one main function: take the Epic exported antibiogram file and p
 > 1. enter `python3 antibiogram_edit.py` in terminal (mac) or cmd (windows)
 > 2. use right click on the antibiogram_edit.py file and launch with **python launcher** 
 ---
-> <img width="711" alt="image" src="https://user-images.githubusercontent.com/28236780/152648615-d4b03d32-a5f9-4a80-b003-5672771eefa8.png">
+> <img width="417" alt="image" src="https://user-images.githubusercontent.com/28236780/152649476-023b2235-0a78-42a5-a91e-52b09c0c6b58.png">
 ---
 * Enter exported file path from Epic, example: /Users/'User Name'/Downloads/'file name'.xlsx *(on Mac)*
 * Enter *Year* (e.g. 2021) 
