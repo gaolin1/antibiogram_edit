@@ -25,6 +25,6 @@ This script has one main function: take the Epic exported antibiogram file and p
 3. Select *Type* (e.g. Blood)
 4. Select *Facility* (e.g. Hamilton General Hospital)
 5. Enter export file path or file name directly to export on the same folder: 
-    NOTE: html extension will be automatically added <br>
-    example: 'output file name' *(to export on the same folder of the script)* <br>
-    example: /Users/'User Name'/Downloads/'output file name' *(to export to an exact folder)* <br>
+    1. NOTE: html extension will be automatically added <br>
+    2. example: 'output file name' *(to export on the same folder of the script)*
+    3. example: /Users/'User Name'/Downloads/'output file name' *(to export to an exact folder)* <br>
