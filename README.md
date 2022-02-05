@@ -12,7 +12,8 @@ This script has one main function: take the Epic exported antibiogram file and p
 
 ---
 *Steps*:
-> export excel file from Epic
+> to extract from Epic: run antibiogram report for desired location and then export antibiogram excel file from Epic
+> <img width="711" alt="image" src="https://user-images.githubusercontent.com/28236780/152648615-d4b03d32-a5f9-4a80-b003-5672771eefa8.png">
 1. Enter exported file path from Epic <br>
     example: /Users/'User Name'/Downloads/'file name'.xlsx *(Mac)* <br>
 2. Enter *Year* (e.g. 2021) <br>
