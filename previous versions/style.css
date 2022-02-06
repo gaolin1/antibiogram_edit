@@ -22,6 +22,11 @@ td:nth-child(1) {
   text-align: left;
 }
 
+.color_grey {
+    background-color: #d3d3d3;
+    color: #d3d3d3;
+}
+
 .color_red {
     background-color: #fe0000;
     text-align: center;
