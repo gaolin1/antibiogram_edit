@@ -17,9 +17,9 @@ def main():
     df = import_df()
     df = convert_to_num(df)
     df = convert_isolate_to_str(df)
-    df = add_tag(df)
     title, title_type, gp_or_gn = title_combine()
     df = mask_combined(df, title_type)
+    df = add_tag(df)
     df = flag_column(df, title_type, gp_or_gn)
     footer = add_footer(title_type, gp_or_gn)
     html = make_real_html(df, title, footer)
@@ -149,7 +149,9 @@ def change_tag(html):
     html = html.replace("<td>red", "<td class = 'color_red'>")
     html = html.replace("<td>yellow", "<td class = 'color_yellow'>")
     html = html.replace("<td>green", "<td class = 'color_green'>")
+    html = html.replace("<td>grey", "<td class = 'color_grey'>")
     html = html.replace("<th>Name", "<th class = 'hide'>Name")
+    html = html.replace("N/R", "")
     return html
 
 def add_tag(df):
@@ -185,25 +187,28 @@ def apply_color(val):
     red = 'red' + str(val)
     green = 'green' + str(val)
     yellow = 'yellow' + str(val)
+    grey = "grey" + str(val)
     if type(val) in [float, int]:
         if val >= 90:
             return green
         elif val >= 60:
             return yellow
         return red
+    if val == "N/R":
+        return grey
     return val
 
 def add_footer(title_type,gp_or_gn):
-    footer_first = '<p>* N/R = Not Recommended. </p>'
+    footer_first = '<p>* A shaded box indicates that the particular antibiotic/microorganism combinations are not recommended. </p>'
     footer_last = "<p>*** Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p>"
     if title_type == ' All Specimen Types Excluding Surveillance ':
-        if gp_or_gn == " Gram Negative ":
+        if gp_or_gn == "Gram Negative":
             footer = "<p> **Cefazolin is not included in this table as automated susceptibility results are not reliable. Refer to the table on blood cultures where alternative methods (Kirby-Bauer) are used for testing. <p>"
             footer = footer_first + footer + footer_last
             return footer
         else:
             pass
-        if gp_or_gn == " Gram Positive ":
+        if gp_or_gn == "Gram Positive":
             footer = "<p> **Ciprofloxacin monotherapy is NOT recommended for serious infections caused by Staphylococcus spp. <p>"
             footer = footer_first + footer + footer_last
             return footer
@@ -229,6 +234,7 @@ def add_footer(title_type,gp_or_gn):
             pass
     else:
         pass
+    footer_last = "<p>** Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p>"
     footer = footer_first + footer_last
     return footer
 
@@ -269,10 +275,10 @@ def gp_or_gn():
                     "2. Gram Negative\n"
                     "Select type (Please enter a number): ")
     if gp_or_gn == "1":
-        gp_or_gn = " Gram Positive "
+        gp_or_gn = "Gram Positive"
         return gp_or_gn
     else:
-        gp_or_gn = " Gram Negative "
+        gp_or_gn = "Gram Negative"
         return gp_or_gn        
 
 
@@ -356,6 +362,11 @@ def make_real_html(df, title,footer):
         font-style: italic;
         text-align: left;
         padding: 3px;
+    }
+
+    .color_grey {
+        background-color: #d3d3d3;
+        text-align: center;
     }
 
     .color_red {
