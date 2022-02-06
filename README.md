@@ -27,11 +27,11 @@ This script has one main function: take the Epic exported antibiogram file and p
 ---
 * Enter exported file path from Epic, example: /Users/'User Name'/Downloads/'file name'.xlsx *(on Mac)*
    * enter password to the Epic extract file
-   * sample output file for testing: Test_Antibiogram_2.xlsx
+   * *sample output file for testing: Test_Antibiogram_2.xlsx*
 * Enter year of the antibiogram (e.g. 2021) 
 * Select Type of the antibiogram (e.g. Blood)
 * Select Facility of the antibiorgam (e.g. Hamilton General Hospital)
 * Then the script will perform masking of the antibiotic and organism combination and proceeds to render the file in html format
    * note: it's helpful to keep the mouse towards to bottom right portion of the screen to avoid the risk of it been taken part of the screenshot as the script will render in Firefox and take screenshot and crop image for excess white space. 
 * the outputed png will be automatically saved on the same directory 
-  * sample output png: 2001 ICU Gram Positive Urine Antibiogram - MUMC 
+  * *sample output png: 2001 ICU Gram Positive Urine Antibiogram - MUMC*
