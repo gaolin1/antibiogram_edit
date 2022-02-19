@@ -15,9 +15,9 @@ from PIL import Image
 
 def main():
     df = import_df()
-    df = convert_to_num(df)
-    df = convert_isolate_to_str(df)
     title, title_type, gp_or_gn = title_combine()
+    df = convert_to_num(df)
+    df = convert_isolate_to_str(df, title_type, gp_or_gn)
     df = mask_combined(df, title_type)
     df = add_tag(df)
     df = flag_column(df, title_type, gp_or_gn)
@@ -26,6 +26,8 @@ def main():
     html = change_tag(html)
     image = export_to_png(html, title)
     crop_image(image)
+
+    #intended script stops here
     #write_to_html(html)
 
 def crop_image(image):
@@ -68,29 +70,38 @@ def get_concat_v_cut(im1, im2, im3):
     return dst
 
 def mask_combined(df, title_type):
-    df = mask(df, "Staphylococcus aureus", "Ampicillin")
-    df = mask(df, "Staphylococcus aureus", "High-Level Gentamicin")
-    df = mask(df, "Coagulase negative Staphylococci", "Ampicillin")
-    df = mask(df, "Coagulase negative Staphylococci", "High-Level Gentamicin")
+    df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ampicillin")
+    df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "High-Level gentamicin")
+    df = mask(df, "Coagulase negative staphylococcus", "Ampicillin")
+    df = mask(df, "Coagulase negative staphylococcus", "High-Level gentamicin")
     df = mask(df, "E. coli", "Ceftazidime")
-    df = mask(df, "E. coli", "Amikacin")
     df = mask(df, "Klebsiella pneumoniae", "Ceftazidime")
-    df = mask(df, "Klebsiella pneumoniae", "Amikacin")
     df = mask(df, "Proteus mirabilis", "Ceftazidime")
-    df = mask(df, "Proteus mirabilis", "Amikacin")
     df = mask(df, "Pseudomonas aeruginosa", "Ampicillin")
     df = mask(df, "Pseudomonas aeruginosa", "Ceftriaxone")
     df = mask(df, "Pseudomonas aeruginosa", "Ertapenem")
     df = mask(df, "Pseudomonas aeruginosa", "Cefazolin")
     df = mask(df, "Pseudomonas aeruginosa", "Cefazolin (Urinary)")
     df = mask(df, "Pseudomonas aeruginosa", "TMP/SMX")
-    if title_type != ' All Specimen Types Excluding Surveillance ':
+    if title_type not in [' All Specimen Types Excluding Surveillance ', " Lower Respiratory "]:
         df = mask(df, "Pseudomonas aeruginosa", "Amikacin")
-    df = mask(df, "Pseudomonas aeruginosa", "Nitrofurantoin (Urinary)")
-    df = mask(df, "Methicillin resistant S.aureus(MRSA)", "Ampicillin")
-    df = mask(df, "Staphylococcus aureus (including MRSA and MSSA)", "Ampicillin")
+        df = mask(df, "E. coli", "Amikacin")
+        df = mask(df, "Klebsiella pneumoniae", "Amikacin")
+        df = mask(df, "Proteus mirabilis", "Amikacin")
+        df = mask(df, "Enterobacter spp.", "Amikacin")
+    else:
+        print("I got here")
+        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Clindamycin")
+        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Erythromycin (predicts azithromycin)")
+        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "TMP/SMX")
+        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Tetracycline")
+        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Rifampin (not to be used as montherapy)")
+        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Vancomycin")
+        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ciprofloxacin")
+    df = mask(df, "Pseudomonas aeruginosa", "Nitrofurantoin (Urine)")
+    df = mask(df, "Staphylococcus aureus MRSA", "Ampicillin")
     #check the 3 lines
-    df = mask(df, "Methicillin Sensitive S. aureus(MSSA)", "Ampicillin")
+    df = mask(df, "Staphylococcus aureus MSSA", "Ampicillin")
     df = mask(df, "Enterococcus spp", "Cefazolin")
     df = mask(df, "Enterococcus faecalis", "Cefazolin")
     df = mask(df, "Enterococcus faecium", "Cefazolin")
@@ -104,18 +115,29 @@ def mask_combined(df, title_type):
         df = mask(df, "Enterococcus spp", "Tetracycline")
     else:
         pass
-    df = mask(df, "Enterococcus spp", "Erythromycin")
+    df = mask(df, "Enterococcus spp", "Erythromycin (predicts azithromycin)")
     #check this too
-    df = mask(df, "Enterococcus spp", "Rifampin")
-    df = mask(df, "Enterobacter spp", "Ampicillin")
-    df = mask(df, "Enterobacter spp", "Cefazolin (Urinary)")
-    df = mask(df, "Enterobacter spp", "Ceftriaxone")
-    df = mask(df, "Enterobacter spp", "Ceftazidime")
-    df = mask(df, "Enterobacter spp", "Piperacillin-Tazobactam")
-    df = mask(df, "Enterobacter spp", "Amikacin")
+    df = mask(df, "Enterococcus spp", "Rifampin (not to be used as montherapy)")
+    df = mask(df, "Enterobacter spp.", "Ampicillin")
+    df = mask(df, "Enterobacter spp.", "Cefazolin")
+    df = mask(df, "Enterobacter spp.", "Ceftriaxone")
+    df = mask(df, "Enterobacter spp.", "Ceftazidime")
+    df = mask(df, "Enterobacter spp.", "Piperacillin-Tazobactam")
     if title_type == " Blood ":
-        df = mask(df, "Enterobacter spp", "TMP/SMX")
+        df = mask(df, "Enterobacter spp.", "TMP/SMX")
     return df
+
+def mask_dot(data, row_label, column_label):
+    data = data.reset_index()
+    data = data.set_index("Name")
+    if row_label and column_label in data:
+        if row_label in data.index:
+            data.loc[row_label, column_label] = "*"
+            return data
+        else:
+            return data
+    else:
+        return data
 
 def mask(data, row_label, column_label):
     data = data.reset_index()
@@ -131,15 +153,15 @@ def mask(data, row_label, column_label):
 
 def flag_column(df, title_type, gp_or_gn):
     df = df.rename(columns={"Isolates": "Number of Isolates"})
-    if title_type == ' All Specimen Types Excluding Surveillance ':
-        if gp_or_gn == " Gram Positive ":
+    if title_type == ' All Specimen Types Excluding Surveillance ' or title_type == ' Lower Respiratory ':
+        if gp_or_gn == "Gram Positive":
             df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin**"})
     if title_type == " Blood ":
-        if gp_or_gn == " Gram Positive ":
-            df = df.rename(columns={"High-Level Gentamicin": "High-Level Gentamicin**"})
+        if gp_or_gn == "Gram Positive":
+            df = df.rename(columns={"High-Level gentamicin": "High-Level gentamicin**"})
     if title_type == " Urine ":
-        if gp_or_gn == " Gram Negative ":
-            df = df.rename(columns={"Cefazolin (Urinary)": "Cefazolin (Urinary)**"})
+        if gp_or_gn == "Gram Negative":
+            df = df.rename(columns={"Cefazolin": "Cefazolin (Urinary)**"})
     df = df.reset_index()
     df = df.set_index("dummy")
     return df
@@ -159,9 +181,10 @@ def add_tag(df):
     #print(df)
     return df
 
-def convert_isolate_to_str(df):
+def convert_isolate_to_str(df, title_type, gp_or_gn):
     df['Isolates'] = pd.to_numeric(df['Isolates'], errors="coerce", downcast="integer")
     df['Isolates'] = df['Isolates'].fillna(0).astype(int)
+    df["Isolates"] = df["Isolates"].apply(apply_less_than_30)
     df['Isolates'] = df['Isolates'].replace(to_replace=0, value=' ')
     df['Isolates'] = df['Isolates'].astype(str)
     # print(df['Isolates'].head())
@@ -176,8 +199,18 @@ def convert_to_num(df):
     df5 = df5.reset_index()
     df5["dummy"] = df5["Name"] != ""
     df5 = df5.set_index("dummy")
-    #print(df5)
     return df5
+
+def apply_less_than_30(val):
+    hashed = "#" + str(val)
+    if type(val) in [float, int]:
+        if val >= 30:
+            return val
+        elif val == 0:
+            return val
+        else:
+            return hashed
+
 
 def apply_style(df):
     df_color = df.style.applymap(apply_color)
@@ -198,26 +231,28 @@ def apply_color(val):
         return grey
     return val
 
-def add_footer(title_type,gp_or_gn):
+def add_footer(title_type, gp_or_gn):
     footer_first = '<p>* A shaded box indicates that the particular antibiotic/microorganism combinations are not recommended. </p>'
-    footer_last = "<p>*** Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p>"
-    if title_type == ' All Specimen Types Excluding Surveillance ':
+    footer_last = "<p># Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p>"
+    if title_type == ' All Specimen Types Excluding Surveillance ' or title_type == ' Lower Respiratory ':
         if gp_or_gn == "Gram Negative":
-            footer = "<p> **Cefazolin is not included in this table as automated susceptibility results are not reliable. Refer to the table on blood cultures where alternative methods (Kirby-Bauer) are used for testing. <p>"
+            footer = "<p> ** Cefazolin is not included in this table as automated susceptibility results are not reliable. Refer to the table on blood cultures where alternative methods (Kirby-Bauer) are used for testing. <p>"
             footer = footer_first + footer + footer_last
             return footer
         else:
             pass
         if gp_or_gn == "Gram Positive":
-            footer = "<p> **Ciprofloxacin monotherapy is NOT recommended for serious infections caused by Staphylococcus spp. <p>"
-            footer = footer_first + footer + footer_last
+            footer_1 = "<p> * See MSSA and MRSA <p>"
+            footer_2 = "<p> ** Ciprofloxacin monotherapy is NOT recommended for serious infections caused by Staphylococcus spp. <p>"
+            footer_first = '<p>*** A shaded box indicates that the particular antibiotic/microorganism combinations are not recommended. </p>'
+            footer = footer_1 + footer_2 + footer_first + footer_last
             return footer
         else:
             pass
     else:
         pass
     if title_type == " Blood ":
-        if gp_or_gn == " Gram Positive ":
+        if gp_or_gn == "Gram Positive":
             footer = "<p> ** For use in combination with Ampicillin or Vancomycin for synergy. </p>"
             footer = footer_first + footer + footer_last
             return footer
@@ -226,7 +261,7 @@ def add_footer(title_type,gp_or_gn):
     else:
         pass
     if title_type == " Urine ":
-        if gp_or_gn == " Gram Negative ":
+        if gp_or_gn == "Gram Negative":
             footer = "<p> ** Cefazolin (urinary) predicts for cephalexin and cefprozil when used for treatment of uncomplicated UTIs due to E. coli, K. pneumoniae, and P. mirabilis but not for  therapy of infections other than uncomplicated UTIs. <p>"
             footer = footer_first + footer + footer_last
             return footer
@@ -234,7 +269,6 @@ def add_footer(title_type,gp_or_gn):
             pass
     else:
         pass
-    footer_last = "<p>** Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p>"
     footer = footer_first + footer_last
     return footer
 
@@ -247,12 +281,30 @@ def write_to_html(html):
 
 def title_combine():
     title_year = ask_for_year()
-    title_location = ask_for_location()
-    title_gp_or_gn = gp_or_gn()
-    title_type = ask_for_type()
-    title_site = ask_for_site()
-    title = title_year + title_location + title_gp_or_gn + title_type + 'Antibiogram - ' + title_site
-    return title, title_type, title_gp_or_gn
+    title_area = ask_for_area()
+    if title_area == "Hamilton Health Sciences":
+        title_location = ask_for_location()
+        title_gp_or_gn = gp_or_gn()
+        title_type = ask_for_type()
+        title_site = ask_for_site()
+        title = title_year + title_location + title_type + title_gp_or_gn + ' Antibiogram - ' + title_site
+        return title, title_type, title_gp_or_gn
+    else:
+        title_gp_or_gn = gp_or_gn()
+        title_type = " All Specimen Types Excluding Surveillance "
+        title = title_year + title_area + title_type + title_gp_or_gn + " Antibigram"
+        return title, title_type, title_gp_or_gn
+
+def ask_for_area():
+    area = input("\n1. Hamilton Health Sciences"
+                 "\n2. Joseph Brant Hospital"
+                 "\nSelect the service area (Please enter a number): ")
+    if area == "1":
+        area = "Hamilton Health Sciences"
+        return area
+    if area == "2":
+        area = " Joseph Brant Hospital"
+        return area
 
 def ask_for_location():
     location = input('\n1. Hospital-Wide'
@@ -263,23 +315,27 @@ def ask_for_location():
         location = ' Hospital-Wide'
         return location
     if location == "2":
-        location = ' ICU '
+        location = ' ICU'
         return location
     if location == "3":
-        location == ' CF Clinic'
+        location == ' CF Clinic' 
         return location
 
 
 def gp_or_gn():
     gp_or_gn = input("\n1. Gram Positive\n"
                     "2. Gram Negative\n"
+                    "3. Combination\n"
                     "Select type (Please enter a number): ")
     if gp_or_gn == "1":
         gp_or_gn = "Gram Positive"
         return gp_or_gn
-    else:
+    if gp_or_gn == "2":
         gp_or_gn = "Gram Negative"
-        return gp_or_gn        
+        return gp_or_gn
+    if gp_or_gn == "3":
+        gp_or_gn = "Combination"
+        return gp_or_gn  
 
 
 
@@ -314,6 +370,7 @@ def ask_for_site():
                             "3. Juravinski Hospital\n"
                             "4. St. Peter's hospital\n"
                             "5. West Lincoln Memorial Hospital\n"
+                            "6. St. Joseph's Healthcare Hamilton\n"
                             "Select Facility (Please enter a number): ")
     if title_selection == "1":
         title_selection = 'Hamilton General Hospital'
@@ -329,6 +386,9 @@ def ask_for_site():
         return title_selection
     if title_selection == "5":
         title_selection = "West Lincoln Memorial Hospital"
+        return title_selection
+    if title_selection == "6":
+        title_selection = ""
         return title_selection
 
 
