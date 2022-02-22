@@ -1,4 +1,3 @@
----
 <h3> Requirements </h3>
 * Python 3 (tested on versions 3.9 and 3.10 on mac)
 * Required packages:
@@ -16,8 +15,6 @@
 
 <h2> What does this script do? </h2>
 > This script has one main function: take the Epic exported antibiogram file and performs data transformation (e.g. puts data in table form, add footer and header etc.), finally ouputs with firefox engine for a png file within the same directory.
-
----
 
 *Steps*:
 > First, extract from Epic: run antibiogram report for desired location and then export excel file from Epic<br>
