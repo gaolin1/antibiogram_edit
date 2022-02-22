@@ -10,6 +10,8 @@ import msoffcrypto
 import io
 from io import BytesIO
 from PIL import Image
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 #import pdfkit
 #from weasyprint import HTML, CSS
 
@@ -29,6 +31,11 @@ def main():
 
     #intended script stops here
     #write_to_html(html)
+
+def get_file():
+    Tk().withdraw()
+    filename = askopenfilename(initialdir = "./", title = "Select file",filetypes = [("Excel Files","*.xlsx")])
+    return filename
 
 def crop_image(image):
     img = cv2.imread(image) # Read in the image and convert to grayscale
@@ -211,7 +218,6 @@ def apply_less_than_30(val):
         else:
             return hashed
 
-
 def apply_style(df):
     df_color = df.style.applymap(apply_color)
     return df_color
@@ -336,7 +342,6 @@ def gp_or_gn():
     if gp_or_gn == "3":
         gp_or_gn = "Combination"
         return gp_or_gn  
-
 
 
 def ask_for_year():
@@ -494,8 +499,8 @@ def make_real_html(df, title,footer):
 
 def import_df():
     decrypted = io.BytesIO()
-    read_path = input("Enter antibiogram file path: ")
-    key = input("Enter File Password: ")
+    read_path = get_file()
+    key = input("\nEnter File Password: ")
     with open(read_path, "rb") as f:
         file = msoffcrypto.OfficeFile(f)
         file.load_key(password=key)
