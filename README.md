@@ -7,12 +7,13 @@
 4. [openpyxl](https://openpyxl.readthedocs.io/en/stable/) (command: `pip install openpyxl`)
 5. [msoffcypto](https://github.com/nolze/msoffcrypto-tool) (command: `pip install msoffcrypto-tool`)
 6. [numpy](https://numpy.org/install/) (command: `pip install numpy`)
+7. [tkinter](https://docs.python.org/3/library/tkinter.html) (command: `pip install tk`)
 - Additional required program: 
   - browser for rendering: [Firefox](https://www.mozilla.org/en-CA/firefox/products/) (only browser to support sideway rotation)
     - recommend rendering running script on mac if available to match rendering on the sample output file 
   - webdriver: install [geckodriver](https://github.com/mozilla/geckodriver/releases) for mac (copy to /usr/local/bin/) or windows (copy to Python/Scripts)
 ---
-
+<h1>
 This script has one main function: take the Epic exported antibiogram file and performs data transformation, finally ouputs with firefox engine for a png file within the same directory.
 
 ---
