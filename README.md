@@ -1,4 +1,4 @@
-### **Requirements**
+<h2> **Requirements** </h2>
 - Python 3 (tested on versions 3.9 and 3.10 on mac)
 - Required packages:
 1. [pandas](https://pandas.pydata.org/docs/getting_started/install.html) (command: `pip install pandas`)
@@ -13,7 +13,7 @@
     - recommend rendering running script on mac if available to match rendering on the sample output file 
   - webdriver: install [geckodriver](https://github.com/mozilla/geckodriver/releases) for mac (copy to /usr/local/bin/) or windows (copy to Python/Scripts)
 ---
-<h1> What does this script do? </h1>
+<h2> What does this script do? </h2>
 > This script has one main function: take the Epic exported antibiogram file and performs data transformation (e.g. puts data in table form, add footer and header etc.), finally ouputs with firefox engine for a png file within the same directory.
 
 ---
