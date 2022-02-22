@@ -1,7 +1,7 @@
 <h3> Requirements </h3>
 ---
-- Python 3 (tested on versions 3.9 and 3.10 on mac)
-- Required packages:
+* Python 3 (tested on versions 3.9 and 3.10 on mac)
+* Required packages:
 1. [pandas](https://pandas.pydata.org/docs/getting_started/install.html) (command: `pip install pandas`)
 2. [selenium](https://selenium-python.readthedocs.io/installation.html) (command: `pip install selenium`)
 3. [pillow](https://pillow.readthedocs.io/en/stable/installation.html) (command: please refer to the library website for instruction per os)
