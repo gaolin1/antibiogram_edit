@@ -1,4 +1,4 @@
-<h2> **Requirements** </h2>
+<h3> Before running the scipt, some ==requirements== </h3>
 - Python 3 (tested on versions 3.9 and 3.10 on mac)
 - Required packages:
 1. [pandas](https://pandas.pydata.org/docs/getting_started/install.html) (command: `pip install pandas`)
