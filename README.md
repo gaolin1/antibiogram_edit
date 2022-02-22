@@ -13,7 +13,7 @@
     - recommend rendering running script on mac if available to match rendering on the sample output file 
   - webdriver: install [geckodriver](https://github.com/mozilla/geckodriver/releases) for mac (copy to /usr/local/bin/) or windows (copy to Python/Scripts)
 ---
-<h1> What does this script do?
+<h1> What does this script do? </h1>
 > This script has one main function: take the Epic exported antibiogram file and performs data transformation (e.g. puts data in table form, add footer and header etc.), finally ouputs with firefox engine for a png file within the same directory.
 
 ---
