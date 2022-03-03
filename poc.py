@@ -311,7 +311,7 @@ def title_combine():
         title_site = ask_for_site()
         title = title_year + " " + title_site + title_location + title_type + title_gp_or_gn + ' Antibiogram'
     else:
-        title_type = ask_for_type()
+        title_type = JBH_ask_for_type()
         title_gp_or_gn = skip_if_strep(title_type)
         title = title_year + title_area + "<br>" + title_type + title_gp_or_gn + " Antibigram"
     return title, title_type, title_gp_or_gn
@@ -385,6 +385,19 @@ def ask_for_type():
     if output_type == "5":
         output_type = ' All Specimens Excluding Blood Cultures and Spinal Fluids Specimemens - Streptococcus Pneumoniae'
     if output_type == "6":
+        output_type = ' Blood Cultures and Spinal Fluids Specimens - Streptococcus Pneumoniae'
+    return output_type
+
+def JBH_ask_for_type():
+    output_type = input('\n1. All specimen types excluding surveillance\n'
+                        '2. (S. Pneumoniae) All Specimens Excluding Blood Cultures and Spinal Fluids\n'
+                        '3. (S. Pneumoniae) Blood Cultures and Spinal Fluids\n'
+                        'Select antibiogram type (Please enter a number): ')
+    if output_type == "1":
+        output_type = ' All Specimen Types Excluding Surveillance '
+    if output_type == "2":
+        output_type = ' All Specimens Excluding Blood Cultures and Spinal Fluids Specimemens - Streptococcus Pneumoniae'
+    if output_type == "3":
         output_type = ' Blood Cultures and Spinal Fluids Specimens - Streptococcus Pneumoniae'
     return output_type
 
