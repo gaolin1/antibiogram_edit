@@ -12,6 +12,7 @@ from io import BytesIO
 from PIL import Image
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
+import os
 #import pdfkit
 #from weasyprint import HTML, CSS
 
@@ -27,10 +28,20 @@ def main():
     html = make_real_html(df, title, footer)
     html = change_tag(html)
     image = export_to_png(html, title)
+    image = remove_br(image, title)
     crop_image(image)
 
     #intended script stops here
     #write_to_html(html)
+
+def remove_br(image, title):
+    if "<br>" in title:
+        title = title.replace("<br>", "")
+        new_image = './' + title + '.png'
+        os.rename(image, new_image)
+        return new_image
+    else:
+        pass
 
 def get_file():
     Tk().withdraw()
@@ -158,16 +169,16 @@ def mask(data, row_label, column_label):
 def flag_column(df, title_type, gp_or_gn):
     df = df.rename(columns={"Isolates": "Number of Isolates"})
     if title_type == ' All Specimen Types Excluding Surveillance ' or title_type == ' Lower Respiratory ':
-        if gp_or_gn == "Gram Positive":
+        if "Gram Positive" in gp_or_gn:
             df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin**"})
     if title_type == " Blood Cultures ":
-        if gp_or_gn == "Gram Positive":
+        if "Gram Positive" in gp_or_gn:
             df = df.rename(columns={"High-Level gentamicin": "High-Level gentamicin**"})
-    if title_type == " Urine ":
-        if gp_or_gn == "Gram Negative":
+    if " Urine " in title_type:
+        if "Gram Negative" in gp_or_gn:
             df = df.rename(columns={"Cefazolin": "Cefazolin (Urinary)**"})
-        if gp_or_gn == "Gram Positive":
-            df = df.rename(columns={"Fosfomycin (oral)": "Fosfomycin (oral)**"})
+        if "Gram Positive" in gp_or_gn:
+            df = df.rename(columns={"Fosfomycin (Oral)": "Fosfomycin (Oral)**"})
             df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin***"})
     df = df.reset_index()
     df = df.set_index("dummy")
@@ -241,13 +252,13 @@ def add_footer(title_type, gp_or_gn):
     footer_first = '<p>* A shaded box indicates that the particular antibiotic/microorganism combinations are not recommended. </p>'
     footer_last = "<p># Fewer than 30 isolates may not be reliable for guiding empiric treatment decisions and cannot be used to statistically compare results to another year. </p>"
     if title_type == ' All Specimen Types Excluding Surveillance ' or title_type == ' Lower Respiratory ':
-        if gp_or_gn == "Gram Negative":
-            footer = "<p> ** Cefazolin is not included in this table as automated susceptibility results are not reliable. Refer to the table on blood cultures where alternative methods (Kirby-Bauer) are used for testing. <p>"
+        if "Gram Negative" in gp_or_gn:
+            footer = "<p> ** Cefazolin is not included in this table as automated susceptibility results are not reliable. <br>Refer to the table on blood cultures where alternative methods (Kirby-Bauer) are used for testing. <p>"
             footer = footer_first + footer + footer_last
             return footer
         else:
             pass
-        if gp_or_gn == "Gram Positive":
+        if "Gram Positive" in gp_or_gn:
             footer_1 = "<p> * See MSSA and MRSA <p>"
             footer_2 = "<p> ** Ciprofloxacin monotherapy is NOT recommended for serious infections caused by Staphylococcus spp. <p>"
             footer_first = '<p>*** A shaded box indicates that the particular antibiotic/microorganism combinations are not recommended. </p>'
@@ -258,7 +269,7 @@ def add_footer(title_type, gp_or_gn):
     else:
         pass
     if title_type == " Blood Cultures ":
-        if gp_or_gn == "Gram Positive":
+        if "Gram Positive" in gp_or_gn:
             footer = "<p> ** For use in combination with Ampicillin or Vancomycin for synergy (for enterococcus species only). </p>"
             footer = footer_first + footer + footer_last
             return footer
@@ -267,11 +278,11 @@ def add_footer(title_type, gp_or_gn):
     else:
         pass
     if title_type == " Urine ":
-        if gp_or_gn == "Gram Negative":
+        if "Gram Negative" in gp_or_gn:
             footer = "<p> ** Cefazolin (urinary) predicts for cephalexin and cefprozil when used for treatment of uncomplicated UTIs due to E. coli, K. pneumoniae, and P. mirabilis but not for  therapy of infections other than uncomplicated UTIs. <p>"
-            footer = footer_first + footer + footer_last
+            footer = footer_last + footer_first + footer
             return footer
-        elif gp_or_gn == "Gram Positive":
+        elif "Gram Positive" in gp_or_gn:
             footer_1 = "<p> ** For Enterococcus faecalis only. </p>"
             footer_2 = "<p> *** For urine only </p>"
             footer = footer_first + footer_1 + footer_2 + footer_last
@@ -296,17 +307,21 @@ def title_combine():
     if title_area == "Hamilton Health Sciences":
         title_location = ask_for_location()
         title_type = ask_for_type()
-        if "Steptococcus Penumoniae" in title_type:
-            title_gp_or_gn = ""
-        else:
-            title_gp_or_gn = gp_or_gn()
+        title_gp_or_gn = skip_if_strep(title_type)
         title_site = ask_for_site()
-        title = title_year + title_location + title_type + title_gp_or_gn + ' Antibiogram - ' + title_site
+        title = title_year + " " + title_site + title_location + title_type + title_gp_or_gn + ' Antibiogram'
     else:
-        title_type = " All Specimen Types Excluding Surveillance "
-        title_gp_or_gn = gp_or_gn()
-        title = title_year + title_area + title_type + title_gp_or_gn + " Antibigram"
+        title_type = ask_for_type()
+        title_gp_or_gn = skip_if_strep(title_type)
+        title = title_year + title_area + "<br>" + title_type + title_gp_or_gn + " Antibigram"
     return title, title_type, title_gp_or_gn
+
+def skip_if_strep(title_type):
+    if "Streptococcus Pneumoniae" in title_type:
+        title_gp_or_gn = ""
+    else:
+        title_gp_or_gn = gp_or_gn()
+    return title_gp_or_gn
 
 def ask_for_area():
     area = input("\n1. Hamilton Health Sciences"
@@ -324,11 +339,11 @@ def ask_for_location():
                      '\n3. CF Clinic'
                      '\nSelect location (Please enter a number): ')
     if location == "1":
-        location = ' Hospital-Wide'
+        location = ' <br>Hospital-Wide'
     if location == "2":
-        location = ' ICU'
+        location = ' <br>ICU'
     if location == "3":
-        location == ' CF Clinic' 
+        location == ' <br>CF Clinic' 
     return location
 
 
@@ -356,8 +371,8 @@ def ask_for_type():
                         '2. Urine\n'
                         '3. Blood Cultures\n'
                         '4. Lower Respiratory\n'
-                        '5. (S. Penumoniae) All Specimens Excluding Blood Cultures and Spinal Fluids\n'
-                        '6. (S. Penumoniae) Blood Cultures and Spinal Fluids\n'
+                        '5. (S. Pneumoniae) All Specimens Excluding Blood Cultures and Spinal Fluids\n'
+                        '6. (S. Pneumoniae) Blood Cultures and Spinal Fluids\n'
                         'Select antibiogram type (Please enter a number): ')
     if output_type == "1":
         output_type = ' All Specimen Types Excluding Surveillance '
@@ -368,9 +383,9 @@ def ask_for_type():
     if output_type == "4":
         output_type = ' Lower Respiratory '
     if output_type == "5":
-        output_type = ' All Specimens Excluding Blood Cultures and Spinal Fluids Specimens - Streptococcus Pneumoniae'
+        output_type = ' All Specimens Excluding Blood Cultures and Spinal Fluids Specimemens - Streptococcus Pneumoniae'
     if output_type == "6":
-        output_type = ' Blood Cultures and Spinal Fluids Specimens Specimens - Streptococcus Pneumoniae'
+        output_type = ' Blood Cultures and Spinal Fluids Specimens - Streptococcus Pneumoniae'
     return output_type
 
 
