@@ -91,14 +91,7 @@ def mask_combined(df, title_type):
     df = mask(df, "Pseudomonas aeruginosa", "Cefazolin")
     df = mask(df, "Pseudomonas aeruginosa", "Cefazolin (Urinary)")
     df = mask(df, "Pseudomonas aeruginosa", "TMP/SMX")
-    if title_type not in [' All Specimen Types Excluding Surveillance ', " Lower Respiratory "]:
-        df = mask(df, "Pseudomonas aeruginosa", "Amikacin")
-        df = mask(df, "E. coli", "Amikacin")
-        df = mask(df, "Klebsiella pneumoniae", "Amikacin")
-        df = mask(df, "Proteus mirabilis", "Amikacin")
-        df = mask(df, "Enterobacter spp.", "Amikacin")
-    else:
-        #print("I got here")
+    if title_type in [' All Specimen Types Excluding Surveillance ', " Lower Respiratory "]:
         df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Clindamycin")
         df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Erythromycin (predicts azithromycin)")
         df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "TMP/SMX")
@@ -106,47 +99,11 @@ def mask_combined(df, title_type):
         df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Rifampin (not to be used as montherapy)")
         df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Vancomycin")
         df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ciprofloxacin")
-        df = mask(df, "Enterococcus spp", "Penicillin (Oral)")
-        df = mask(df, "Enterococcus spp", "Penicillin (IV)")
-        df = mask(df, "Enterococcus spp", "Penicillin (IV) Non-Meningitis")
-        df = mask(df, "Enterococcus spp", "Penicillin (IV) Meningitis")
-        df = mask(df, "Enterococcus spp", "Ceftriaxone (IV)")
-        df = mask(df, "Enterococcus spp", "Ceftriaxone (IV) Non-Meningitis")
-        df = mask(df, "Enterococcus spp", "Ceftriaxone (IV) Meningitis")
-        df = mask(df, "Enterococcus spp", "Levofloxacin")
-        df = mask(df, "Enterococcus spp", "Meropenem")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Penicillin (Oral)")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Penicillin (IV)")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Penicillin (IV) Non-Meningitis")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Penicillin (IV) Meningitis")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ceftriaxone (IV)")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ceftriaxone (IV) Non-Meningitis")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ceftriaxone (IV) Meningitis")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Levofloxacin")
-        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Meropenem")
-        df = mask(df, "Staphylococcus aureus MRSA", "Penicillin (Oral)")
-        df = mask(df, "Staphylococcus aureus MRSA", "Penicillin (IV)")
-        df = mask(df, "Staphylococcus aureus MRSA", "Penicillin (IV) Non-Meningitis")
-        df = mask(df, "Staphylococcus aureus MRSA", "Penicillin (IV) Meningitis")
-        df = mask(df, "Staphylococcus aureus MRSA", "Ceftriaxone (IV)")
-        df = mask(df, "Staphylococcus aureus MRSA", "Ceftriaxone (IV) Non-Meningitis")
-        df = mask(df, "Staphylococcus aureus MRSA", "Ceftriaxone (IV) Meningitis")
-        df = mask(df, "Staphylococcus aureus MRSA", "Levofloxacin")
-        df = mask(df, "Staphylococcus aureus MRSA", "Meropenem")
-        df = mask(df, "Staphylococcus aureus MRSA", "Penicillin (Oral)")
-        df = mask(df, "Staphylococcus aureus MSSA", "Penicillin (Oral)")
-        df = mask(df, "Staphylococcus aureus MSSA", "Penicillin (IV)")
-        df = mask(df, "Staphylococcus aureus MSSA", "Penicillin (IV) Non-Meningitis")
-        df = mask(df, "Staphylococcus aureus MSSA", "Penicillin (IV) Meningitis")
-        df = mask(df, "Staphylococcus aureus MSSA", "Ceftriaxone (IV)")
-        df = mask(df, "Staphylococcus aureus MSSA", "Ceftriaxone (IV) Non-Meningitis")
-        df = mask(df, "Staphylococcus aureus MSSA", "Ceftriaxone (IV) Meningitis")
-        df = mask(df, "Staphylococcus aureus MSSA", "Levofloxacin")
-        df = mask(df, "Staphylococcus aureus MSSA", "Meropenem")
     df = mask(df, "Pseudomonas aeruginosa", "Nitrofurantoin (Urine)")
     df = mask(df, "Staphylococcus aureus MRSA", "Ampicillin")
-    #check the 3 lines
     df = mask(df, "Staphylococcus aureus MSSA", "Ampicillin")
+    df = mask(df, "Staphylococcus aureus MRSA", "Erythromycin (predicts azithromycin)")
+    df = mask(df, "Staphylococcus aureus MSSA", "Erythromycin (predicts azithromycin)")
     df = mask(df, "Enterococcus spp", "Cefazolin")
     df = mask(df, "Enterococcus faecalis", "Cefazolin")
     df = mask(df, "Enterococcus faecium", "Cefazolin")
@@ -159,7 +116,10 @@ def mask_combined(df, title_type):
         df = mask(df, "Enterococcus spp", "Ciprofloxacin")
         df = mask(df, "Enterococcus spp", "Tetracycline")
     else:
-        pass
+        df = mask(df, "Enterobacter spp", "Fosfomycin (oral)")
+        df = mask(df, "Klebsiella pneumoniae", "Fosfomycin (oral)")
+        df = mask(df, "Proteus mirabilis", "Fosfomycin (oral)")
+        df = mask(df, "Pseudomonas aeruginosa", "Fosfomycin (oral)")
     df = mask(df, "Enterococcus spp", "Erythromycin (predicts azithromycin)")
     #check this too
     df = mask(df, "Enterococcus spp", "Rifampin (not to be used as montherapy)")
@@ -168,8 +128,7 @@ def mask_combined(df, title_type):
     df = mask(df, "Enterobacter spp.", "Ceftriaxone")
     df = mask(df, "Enterobacter spp.", "Ceftazidime")
     df = mask(df, "Enterobacter spp.", "Piperacillin-Tazobactam")
-    if title_type == " Blood ":
-        df = mask(df, "Enterobacter spp.", "TMP/SMX")
+    df = mask(df, "Klebsiella pneumoniae", "Ampicillin")
     return df
 
 def mask_dot(data, row_label, column_label):
@@ -201,12 +160,15 @@ def flag_column(df, title_type, gp_or_gn):
     if title_type == ' All Specimen Types Excluding Surveillance ' or title_type == ' Lower Respiratory ':
         if gp_or_gn == "Gram Positive":
             df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin**"})
-    if title_type == " Blood ":
+    if title_type == " Blood Cultures ":
         if gp_or_gn == "Gram Positive":
             df = df.rename(columns={"High-Level gentamicin": "High-Level gentamicin**"})
     if title_type == " Urine ":
         if gp_or_gn == "Gram Negative":
             df = df.rename(columns={"Cefazolin": "Cefazolin (Urinary)**"})
+        if gp_or_gn == "Gram Positive":
+            df = df.rename(columns={"Fosfomycin (oral)": "Fosfomycin (oral)**"})
+            df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin***"})
     df = df.reset_index()
     df = df.set_index("dummy")
     return df
@@ -295,9 +257,9 @@ def add_footer(title_type, gp_or_gn):
             pass
     else:
         pass
-    if title_type == " Blood ":
+    if title_type == " Blood Cultures ":
         if gp_or_gn == "Gram Positive":
-            footer = "<p> ** For use in combination with Ampicillin or Vancomycin for synergy. </p>"
+            footer = "<p> ** For use in combination with Ampicillin or Vancomycin for synergy (for enterococcus species only). </p>"
             footer = footer_first + footer + footer_last
             return footer
         else:
@@ -308,6 +270,11 @@ def add_footer(title_type, gp_or_gn):
         if gp_or_gn == "Gram Negative":
             footer = "<p> ** Cefazolin (urinary) predicts for cephalexin and cefprozil when used for treatment of uncomplicated UTIs due to E. coli, K. pneumoniae, and P. mirabilis but not for  therapy of infections other than uncomplicated UTIs. <p>"
             footer = footer_first + footer + footer_last
+            return footer
+        elif gp_or_gn == "Gram Positive":
+            footer_1 = "<p> ** For Enterococcus faecalis only. </p>"
+            footer_2 = "<p> *** For urine only </p>"
+            footer = footer_first + footer_1 + footer_2 + footer_last
             return footer
         else:
             pass
@@ -328,16 +295,18 @@ def title_combine():
     title_area = ask_for_area()
     if title_area == "Hamilton Health Sciences":
         title_location = ask_for_location()
-        title_gp_or_gn = gp_or_gn()
         title_type = ask_for_type()
+        if "Steptococcus Penumoniae" in title_type:
+            title_gp_or_gn = ""
+        else:
+            title_gp_or_gn = gp_or_gn()
         title_site = ask_for_site()
         title = title_year + title_location + title_type + title_gp_or_gn + ' Antibiogram - ' + title_site
-        return title, title_type, title_gp_or_gn
     else:
-        title_gp_or_gn = gp_or_gn()
         title_type = " All Specimen Types Excluding Surveillance "
+        title_gp_or_gn = gp_or_gn()
         title = title_year + title_area + title_type + title_gp_or_gn + " Antibigram"
-        return title, title_type, title_gp_or_gn
+    return title, title_type, title_gp_or_gn
 
 def ask_for_area():
     area = input("\n1. Hamilton Health Sciences"
@@ -345,10 +314,9 @@ def ask_for_area():
                  "\nSelect the service area (Please enter a number): ")
     if area == "1":
         area = "Hamilton Health Sciences"
-        return area
     if area == "2":
         area = " Joseph Brant Hospital"
-        return area
+    return area
 
 def ask_for_location():
     location = input('\n1. Hospital-Wide'
@@ -357,13 +325,11 @@ def ask_for_location():
                      '\nSelect location (Please enter a number): ')
     if location == "1":
         location = ' Hospital-Wide'
-        return location
     if location == "2":
         location = ' ICU'
-        return location
     if location == "3":
         location == ' CF Clinic' 
-        return location
+    return location
 
 
 def gp_or_gn():
@@ -373,13 +339,11 @@ def gp_or_gn():
                     "Select type (Please enter a number): ")
     if gp_or_gn == "1":
         gp_or_gn = "Gram Positive"
-        return gp_or_gn
     if gp_or_gn == "2":
         gp_or_gn = "Gram Negative"
-        return gp_or_gn
     if gp_or_gn == "3":
         gp_or_gn = "Combination"
-        return gp_or_gn  
+    return gp_or_gn  
 
 
 def ask_for_year():
@@ -390,21 +354,24 @@ def ask_for_year():
 def ask_for_type():
     output_type = input('\n1. All specimen types excluding surveillance\n'
                         '2. Urine\n'
-                        '3. Blood\n'
+                        '3. Blood Cultures\n'
                         '4. Lower Respiratory\n'
+                        '5. (S. Penumoniae) All Specimens Excluding Blood Cultures and Spinal Fluids\n'
+                        '6. (S. Penumoniae) Blood Cultures and Spinal Fluids\n'
                         'Select antibiogram type (Please enter a number): ')
     if output_type == "1":
         output_type = ' All Specimen Types Excluding Surveillance '
-        return output_type
     if output_type == "2":
         output_type = ' Urine '
-        return output_type
     if output_type == "3":
-        output_type = ' Blood '
-        return output_type
+        output_type = ' Blood Cultures '
     if output_type == "4":
         output_type = ' Lower Respiratory '
-        return output_type
+    if output_type == "5":
+        output_type = ' All Specimens Excluding Blood Cultures and Spinal Fluids Specimens - Streptococcus Pneumoniae'
+    if output_type == "6":
+        output_type = ' Blood Cultures and Spinal Fluids Specimens Specimens - Streptococcus Pneumoniae'
+    return output_type
 
 
 def ask_for_site():
@@ -417,22 +384,17 @@ def ask_for_site():
                             "Select Facility (Please enter a number): ")
     if title_selection == "1":
         title_selection = 'Hamilton General Hospital'
-        return title_selection
     if title_selection == "2":
         title_selection = "McMaster University Medical Centre"
-        return title_selection
     if title_selection == "3":
         title_selection = "Juravinski Hospital"
-        return title_selection
     if title_selection == "4":
         title_selection = "St. Peter's hospital"
-        return title_selection
     if title_selection == "5":
         title_selection = "West Lincoln Memorial Hospital"
-        return title_selection
     if title_selection == "6":
         title_selection = ""
-        return title_selection
+    return title_selection
 
 
 def make_real_html(df, title,footer):
