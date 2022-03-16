@@ -2595,3 +2595,16 @@ DevTools listening on ws://localhost:51511/devtools/browser/02427e45-edad-493a-a
 1647436602291	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
 _RegisterApplication(), FAILED TO establish the default connection to the WindowServer, _CGSDefaultConnection() is NULL.
 1647436602538	Marionette	INFO	Stopped listening on port 51518
+1647437020162	geckodriver	INFO	Listening on 127.0.0.1:51659
+1647437020174	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "51660" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile4CyFKK"
+1647437020598	Marionette	INFO	Marionette enabled
+_RegisterApplication(), FAILED TO establish the default connection to the WindowServer, _CGSDefaultConnection() is NULL.
+_RegisterApplication(), FAILED TO establish the default connection to the WindowServer, _CGSDefaultConnection() is NULL.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile4CyFKK/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 241"  data: no]
+DevTools listening on ws://localhost:51660/devtools/browser/4b5f1a6b-505f-49b8-b950-dfe6ebf71241
+1647437022624	Marionette	INFO	Listening on port 51667
+1647437022682	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+_RegisterApplication(), FAILED TO establish the default connection to the WindowServer, _CGSDefaultConnection() is NULL.
+1647437022952	Marionette	INFO	Stopped listening on port 51667

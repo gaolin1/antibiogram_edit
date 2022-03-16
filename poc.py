@@ -176,7 +176,8 @@ def flag_column(df, title_type, gp_or_gn):
             df = df.rename(columns={"High-Level gentamicin": "High-Level gentamicin**"})
     if " Urine " in title_type:
         if "Gram Negative" in gp_or_gn:
-            df = df.rename(columns={"Cefazolin": "Cefazolin (Urinary)**"})
+            df = df.rename(columns={"Cefazolin": "Cefazolin (Urinary)***"})
+            df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin**"})
         if "Gram Positive" in gp_or_gn:
             df = df.rename(columns={"Fosfomycin (Oral)": "Fosfomycin (Oral)**"})
             df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin***"})
@@ -279,8 +280,9 @@ def add_footer(title_type, gp_or_gn):
         pass
     if title_type == " Urine ":
         if "Gram Negative" in gp_or_gn:
-            footer = "<p> ** Cefazolin (urinary) predicts for cephalexin and cefprozil when used for treatment of uncomplicated UTIs due to E. coli, K. pneumoniae, and P. mirabilis but not for  therapy of infections other than uncomplicated UTIs. <p>"
-            footer = footer_last + footer_first + footer
+            footer = "<p> *** Cefazolin (urinary) predicts for cephalexin and cefprozil when used for treatment of uncomplicated UTIs due to E. coli, K. pneumoniae, and P. mirabilis but not for  therapy of infections other than uncomplicated UTIs. <p>"
+            footer_2 = "<p> ** For urine only </p>"
+            footer = footer_last + footer_first + footer_2 + footer 
             return footer
         elif "Gram Positive" in gp_or_gn:
             footer_1 = "<p> ** For Enterococcus faecalis only. </p>"
