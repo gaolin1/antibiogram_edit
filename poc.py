@@ -127,7 +127,7 @@ def mask_combined(df, title_type):
         df = mask(df, "Enterococcus spp", "Ciprofloxacin")
         df = mask(df, "Enterococcus spp", "Tetracycline")
     else:
-        df = mask(df, "Enterobacter spp", "Fosfomycin (Oral)")
+        df = mask(df, "Enterobacter spp.", "Fosfomycin (Oral)")
         df = mask(df, "Klebsiella pneumoniae", "Fosfomycin (Oral)")
         df = mask(df, "Proteus mirabilis", "Fosfomycin (Oral)")
         df = mask(df, "Pseudomonas aeruginosa", "Fosfomycin (Oral)")
