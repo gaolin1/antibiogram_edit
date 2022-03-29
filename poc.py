@@ -89,77 +89,70 @@ def get_concat_v_cut(im1, im2, im3):
 
 def mask_combined(df, title_type):
     #this function masks the cell based on the row and column labels
-    df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ampicillin")
-    df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "High-Level gentamicin")
-    df = mask(df, "Coagulase negative staphylococcus", "Ampicillin")
-    df = mask(df, "Coagulase negative staphylococcus", "High-Level gentamicin")
-    df = mask(df, "E. coli", "Ceftazidime")
-    df = mask(df, "Klebsiella pneumoniae", "Ceftazidime")
-    df = mask(df, "Proteus mirabilis", "Ceftazidime")
-    df = mask(df, "Pseudomonas aeruginosa", "Ampicillin")
-    df = mask(df, "Pseudomonas aeruginosa", "Ceftriaxone")
-    df = mask(df, "Pseudomonas aeruginosa", "Ertapenem")
-    df = mask(df, "Pseudomonas aeruginosa", "Cefazolin")
-    df = mask(df, "Pseudomonas aeruginosa", "Cefazolin (Urinary)")
-    df = mask(df, "Pseudomonas aeruginosa", "TMP/SMX")
+    df = mask(df, "Staphylococcus aureus MRSA", "Cefazolin", 0)
+    df = mask(df, "Staphylococcus aureus MRSA", "Cloxacillin", 0)
+    df = mask(df, "Staphylococcus aureus MSSA", "Cefazolin", 100)
+    df = mask(df, "Staphylococcus aureus MSSA", "Cloxacillin", 100)
+    #mask for N/R
+    df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ampicillin", "N/R")
+    df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "High-Level gentamicin", "N/R")
+    df = mask(df, "Coagulase negative staphylococcus", "Ampicillin", "N/R")
+    df = mask(df, "Coagulase negative staphylococcus", "High-Level gentamicin", "N/R")
+    df = mask(df, "E. coli", "Ceftazidime", "N/R")
+    df = mask(df, "Klebsiella pneumoniae", "Ceftazidime", "N/R")
+    df = mask(df, "Proteus mirabilis", "Ceftazidime", "N/R")
+    df = mask(df, "Pseudomonas aeruginosa", "Ampicillin", "N/R")
+    df = mask(df, "Pseudomonas aeruginosa", "Ceftriaxone", "N/R")
+    df = mask(df, "Pseudomonas aeruginosa", "Ertapenem", "N/R")
+    df = mask(df, "Pseudomonas aeruginosa", "Cefazolin", "N/R")
+    df = mask(df, "Pseudomonas aeruginosa", "Cefazolin (Urinary)", "N/R")
+    df = mask(df, "Pseudomonas aeruginosa", "TMP/SMX", "N/R")
     if title_type in [' All Specimen Types Excluding Surveillance ', " Lower Respiratory "]:
-        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Clindamycin")
-        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Erythromycin (predicts azithromycin)")
-        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "TMP/SMX")
-        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Tetracycline")
-        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Rifampin (not to be used as montherapy)")
-        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Vancomycin")
-        df = mask_dot(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ciprofloxacin")
-    df = mask(df, "Pseudomonas aeruginosa", "Nitrofurantoin (Urine)")
-    df = mask(df, "Staphylococcus aureus MRSA", "Ampicillin")
-    df = mask(df, "Staphylococcus aureus MSSA", "Ampicillin")
-    df = mask(df, "Staphylococcus aureus MRSA", "Erythromycin (predicts azithromycin)")
-    df = mask(df, "Staphylococcus aureus MSSA", "Erythromycin (predicts azithromycin)")
-    df = mask(df, "Enterococcus spp", "Cefazolin")
-    df = mask(df, "Enterococcus faecalis", "Cefazolin")
-    df = mask(df, "Enterococcus faecium", "Cefazolin")
-    df = mask(df, "Enterococcus spp", "Cloxacillin")
-    df = mask(df, "Enterococcus faecalis", "Cloxacillin")
-    df = mask(df, "Enterococcus faecium", "Cloxacillin")
-    df = mask(df, "Enterococcus spp", "Clindamycin")
-    df = mask(df, "Enterococcus spp", "TMP/SMX")
+        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Clindamycin", "*")
+        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Erythromycin (predicts azithromycin)", "*")
+        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "TMP/SMX", "*")
+        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Tetracycline", "*")
+        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Rifampin (not to be used as montherapy)", "*")
+        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Vancomycin", "*")
+        df = mask(df, "Staphylococcus aureus (includes mssa and mrsa)", "Ciprofloxacin", "*")
+    df = mask(df, "Pseudomonas aeruginosa", "Nitrofurantoin (Urine)", "N/R")
+    df = mask(df, "Staphylococcus aureus MRSA", "Ampicillin", "N/R")
+    df = mask(df, "Staphylococcus aureus MSSA", "Ampicillin", "N/R")
+    df = mask(df, "Staphylococcus aureus MRSA", "Erythromycin (predicts azithromycin)", "N/R")
+    df = mask(df, "Staphylococcus aureus MSSA", "Erythromycin (predicts azithromycin)", "N/R")
+    df = mask(df, "Enterococcus spp", "Cefazolin", "N/R")
+    df = mask(df, "Enterococcus faecalis", "Cefazolin", "N/R")
+    df = mask(df, "Enterococcus faecium", "Cefazolin", "N/R")
+    df = mask(df, "Enterococcus spp", "Cloxacillin", "N/R")
+    df = mask(df, "Enterococcus faecalis", "Cloxacillin", "N/R")
+    df = mask(df, "Enterococcus faecium", "Cloxacillin", "N/R")
+    df = mask(df, "Enterococcus spp", "Clindamycin", "N/R")
+    df = mask(df, "Enterococcus spp", "TMP/SMX", "N/R")
     if title_type != " Urine ":
-        df = mask(df, "Enterococcus spp", "Ciprofloxacin")
-        df = mask(df, "Enterococcus spp", "Tetracycline")
+        df = mask(df, "Enterococcus spp", "Ciprofloxacin", "N/R")
+        df = mask(df, "Enterococcus spp", "Tetracycline", "N/R")
     else:
-        df = mask(df, "Enterobacter spp.", "Fosfomycin (Oral)")
-        df = mask(df, "Klebsiella pneumoniae", "Fosfomycin (Oral)")
-        df = mask(df, "Proteus mirabilis", "Fosfomycin (Oral)")
-        df = mask(df, "Pseudomonas aeruginosa", "Fosfomycin (Oral)")
-    df = mask(df, "Enterococcus spp", "Erythromycin (predicts azithromycin)")
+        df = mask(df, "Enterobacter spp.", "Fosfomycin (Oral)", "N/R")
+        df = mask(df, "Klebsiella pneumoniae", "Fosfomycin (Oral)", "N/R")
+        df = mask(df, "Proteus mirabilis", "Fosfomycin (Oral)", "N/R")
+        df = mask(df, "Pseudomonas aeruginosa", "Fosfomycin (Oral)", "N/R")
+    df = mask(df, "Enterococcus spp", "Erythromycin (predicts azithromycin)", "N/R")
     #check this too
-    df = mask(df, "Enterococcus spp", "Rifampin (not to be used as montherapy)")
-    df = mask(df, "Enterobacter spp.", "Ampicillin")
-    df = mask(df, "Enterobacter spp.", "Cefazolin")
-    df = mask(df, "Enterobacter spp.", "Ceftriaxone")
-    df = mask(df, "Enterobacter spp.", "Ceftazidime")
-    df = mask(df, "Enterobacter spp.", "Piperacillin-Tazobactam")
-    df = mask(df, "Klebsiella pneumoniae", "Ampicillin")
+    df = mask(df, "Enterococcus spp", "Rifampin (not to be used as montherapy)", "N/R")
+    df = mask(df, "Enterobacter spp.", "Ampicillin", "N/R")
+    df = mask(df, "Enterobacter spp.", "Cefazolin", "N/R")
+    df = mask(df, "Enterobacter spp.", "Ceftriaxone", "N/R")
+    df = mask(df, "Enterobacter spp.", "Ceftazidime", "N/R")
+    df = mask(df, "Enterobacter spp.", "Piperacillin-Tazobactam", "N/R")
+    df = mask(df, "Klebsiella pneumoniae", "Ampicillin", "N/R")
     return df
 
-def mask_dot(data, row_label, column_label):
+def mask(data, row_label, column_label, value):
     data = data.reset_index()
     data = data.set_index("Name")
     if row_label and column_label in data:
         if row_label in data.index:
-            data.loc[row_label, column_label] = "*"
-            return data
-        else:
-            return data
-    else:
-        return data
-
-def mask(data, row_label, column_label):
-    data = data.reset_index()
-    data = data.set_index("Name")
-    if row_label and column_label in data:
-        if row_label in data.index:
-            data.loc[row_label, column_label] = "N/R"
+            data.loc[row_label, column_label] = value
             return data
         else:
             return data
@@ -178,6 +171,7 @@ def flag_column(df, title_type, gp_or_gn):
         if "Gram Negative" in gp_or_gn:
             df = df.rename(columns={"Cefazolin": "Cefazolin (Urinary)***"})
             df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin**"})
+            df = df.rename(columns={"Tetracycline": "Tetracycline**"})
         if "Gram Positive" in gp_or_gn:
             df = df.rename(columns={"Fosfomycin (Oral)": "Fosfomycin (Oral)**"})
             df = df.rename(columns={"Ciprofloxacin": "Ciprofloxacin***"})
