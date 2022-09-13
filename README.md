@@ -26,7 +26,7 @@ This script has one main function: take the Epic exported antibiogram file and p
 > To start the script, either 
 * Right click on `antibiogram generator.py` and launch with **python launcher**
 * Choose JBH button if exporting for JBH, otherwise continue to enter the required fields:
-  * <img width="830" alt="image" src="https://user-images.githubusercontent.com/28236780/189787187-6dadee46-dc10-4e5e-b723-7ab0d782c8f2.png">
+> <img width="830" alt="image" src="https://user-images.githubusercontent.com/28236780/189787187-6dadee46-dc10-4e5e-b723-7ab0d782c8f2.png">
   * Follow the displayed prompts to answer specifics of this antibiogram: 
     * Enter `year` of the antibiogram (e.g. 2021) 
     * Select `facility` of the antibiorgam (e.g. Hamilton General Hospital)
