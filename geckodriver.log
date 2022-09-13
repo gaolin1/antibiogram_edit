@@ -2691,3 +2691,209 @@ _RegisterApplication(), FAILED TO establish the default connection to the Window
 
 ###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
 
+1658690515358	geckodriver	INFO	Listening on 127.0.0.1:50503
+1658690515792	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50504" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofilel9Odie"
+WebDriver BiDi listening on ws://localhost:50504
+DevTools listening on ws://localhost:50504/devtools/browser/765ae064-2450-4e06-b157-77ffddeafa8a
+1658690552666	geckodriver	INFO	Listening on 127.0.0.1:50591
+1658690552680	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50592" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileG7UA6E"
+1658690553312	Marionette	INFO	Marionette enabled
+1658690553387	Marionette	INFO	Listening on port 50599
+WebDriver BiDi listening on ws://localhost:50592
+1658690553939	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileG7UA6E/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50592/devtools/browser/009dc319-6cca-4b52-abc1-8e4dcf061d8d
+1658690556079	Marionette	INFO	Stopped listening on port 50599
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 71: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1658690621316	geckodriver	INFO	Listening on 127.0.0.1:50641
+1658690621331	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50642" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileEu4QUw"
+1658690622065	Marionette	INFO	Marionette enabled
+1658690622112	Marionette	INFO	Listening on port 50649
+WebDriver BiDi listening on ws://localhost:50642
+1658690622523	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileEu4QUw/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50642/devtools/browser/009fbfeb-7c2f-4a03-a090-ddded9ea66a4
+1658690624561	Marionette	INFO	Stopped listening on port 50649
+console.warn: services.settings: main/query-stripping sync interrupted by shutdown
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 71: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1658690657697	geckodriver	INFO	Listening on 127.0.0.1:50678
+1658690657713	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50679" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofiletXDHl9"
+1658690658438	Marionette	INFO	Marionette enabled
+1658690658480	Marionette	INFO	Listening on port 50686
+WebDriver BiDi listening on ws://localhost:50679
+1658690658858	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofiletXDHl9/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50679/devtools/browser/b0039c60-23be-4ed6-b6fb-8ce28138ede1
+1658690660869	Marionette	INFO	Stopped listening on port 50686
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+1658690702425	geckodriver	INFO	Listening on 127.0.0.1:50718
+1658690702441	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50719" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileUd22bM"
+1658690703204	Marionette	INFO	Marionette enabled
+1658690703310	Marionette	INFO	Listening on port 50726
+WebDriver BiDi listening on ws://localhost:50719
+1658690703622	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileUd22bM/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50719/devtools/browser/1755d972-0921-436e-a489-88c2d4ac4b39
+1658690705533	Marionette	INFO	Stopped listening on port 50726
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+1658691501666	geckodriver	INFO	Listening on 127.0.0.1:50837
+1658691501680	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50838" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileeU6NRp"
+1658691502397	Marionette	INFO	Marionette enabled
+1658691502443	Marionette	INFO	Listening on port 50841
+WebDriver BiDi listening on ws://localhost:50838
+1658691502812	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileeU6NRp/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50838/devtools/browser/30bd5c84-b4d4-4371-bd8b-5cbee8582b46
+1658691504760	Marionette	INFO	Stopped listening on port 50841
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+1658691579078	geckodriver	INFO	Listening on 127.0.0.1:50888
+1658691579593	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50889" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofiletKXgBb"
+1658691580378	Marionette	INFO	Marionette enabled
+1658691580417	Marionette	INFO	Listening on port 50895
+WebDriver BiDi listening on ws://localhost:50889
+1658691580745	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofiletKXgBb/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50889/devtools/browser/0024f0fb-7f63-4050-853a-1e2b4c8cdfa7
+1658691582799	Marionette	INFO	Stopped listening on port 50895
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 71: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1658692232448	geckodriver	INFO	Listening on 127.0.0.1:51044
+1658692232963	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "51045" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileNCxKjU"
+1658692233837	Marionette	INFO	Marionette enabled
+1658692233894	Marionette	INFO	Listening on port 51054
+WebDriver BiDi listening on ws://localhost:51045
+1658692234381	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileNCxKjU/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:51045/devtools/browser/a9a93fac-39a7-4cdb-880f-f297d266612a
+1658692236333	Marionette	INFO	Stopped listening on port 51054
+console.warn: services.settings: main/query-stripping sync interrupted by shutdown
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 71: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662564760834	geckodriver	INFO	Listening on 127.0.0.1:63347
+1662564761219	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63348" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileY2ITIf"
+WebDriver BiDi listening on ws://localhost:63348
+1662564914073	geckodriver	INFO	Listening on 127.0.0.1:63382
+1662564914584	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63383" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile0zqj9f"
+1662564915737	Marionette	INFO	Marionette enabled
+1662564915817	Marionette	INFO	Listening on port 63391
+WebDriver BiDi listening on ws://localhost:63383
+1662564916148	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile0zqj9f/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:63383/devtools/browser/4b3e0405-795b-4a23-9815-a6c7cdb8dbd6
+1662564918323	Marionette	INFO	Stopped listening on port 63391
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662564991096	geckodriver	INFO	Listening on 127.0.0.1:63428
+1662564991606	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63429" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileCNNQVq"
+1662564992551	Marionette	INFO	Marionette enabled
+1662564992616	Marionette	INFO	Listening on port 63437
+WebDriver BiDi listening on ws://localhost:63429
+1662564992924	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileCNNQVq/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:63429/devtools/browser/fddbea8e-f778-4ad8-9719-ca6314037695
+1662564995031	Marionette	INFO	Stopped listening on port 63437
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662565454806	geckodriver	INFO	Listening on 127.0.0.1:63546
+1662565454820	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63547" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileudBsAe"
+1662565455475	Marionette	INFO	Marionette enabled
+1662565455542	Marionette	INFO	Listening on port 63552
+WebDriver BiDi listening on ws://localhost:63547
+1662565456042	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileudBsAe/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:63547/devtools/browser/30bb687a-ebce-4647-9c98-c6678ed41ca1
+1662565458115	Marionette	INFO	Stopped listening on port 63552
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662565635722	geckodriver	INFO	Listening on 127.0.0.1:63611
+1662565635735	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63612" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileujdjYC"
+1662565636236	Marionette	INFO	Marionette enabled
+1662565636305	Marionette	INFO	Listening on port 63617
+WebDriver BiDi listening on ws://localhost:63612
+1662565636747	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileujdjYC/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:63612/devtools/browser/0d4a81ae-645d-46c9-8bbc-e430689eed35
+1662565639145	Marionette	INFO	Stopped listening on port 63617
+1662565920231	geckodriver	INFO	Listening on 127.0.0.1:63713
+1662565920748	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63714" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile10R8Vg"
+1662565921641	Marionette	INFO	Marionette enabled
+1662565922005	Marionette	INFO	Listening on port 63723
+WebDriver BiDi listening on ws://localhost:63714
+1662565922193	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile10R8Vg/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:63714/devtools/browser/7ae3298e-fb19-4a07-879e-e016bd1af5de
+1662565924462	Marionette	INFO	Stopped listening on port 63723
+1662566099540	geckodriver	INFO	Listening on 127.0.0.1:63835
+1662566100058	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63836" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileJdAoiX"
+1662566100896	Marionette	INFO	Marionette enabled
+1662566100939	Marionette	INFO	Listening on port 63844
+WebDriver BiDi listening on ws://localhost:63836
+1662566101301	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileJdAoiX/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:63836/devtools/browser/55d6007f-fb1f-4f51-936c-970c211b1598
+1662566103262	Marionette	INFO	Stopped listening on port 63844
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662566478485	geckodriver	INFO	Listening on 127.0.0.1:63977
+1662566479001	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "63978" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileRMzd8x"
+1662566479854	Marionette	INFO	Marionette enabled
+1662566479898	Marionette	INFO	Listening on port 63986
+WebDriver BiDi listening on ws://localhost:63978
+1662566480274	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileRMzd8x/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:63978/devtools/browser/bc6c7ae9-b2af-4e03-b82e-da84fa301e3e
+1662566482345	Marionette	INFO	Stopped listening on port 63986
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662567904802	geckodriver	INFO	Listening on 127.0.0.1:64358
+1662567905318	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "64359" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileNBjd4z"
+1662567906179	Marionette	INFO	Marionette enabled
+1662567906226	Marionette	INFO	Listening on port 64367
+WebDriver BiDi listening on ws://localhost:64359
+1662567906640	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileNBjd4z/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:64359/devtools/browser/7e5bd75d-2028-468b-9103-91fb5583c150
+1662567908720	Marionette	INFO	Stopped listening on port 64367
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662568298529	geckodriver	INFO	Listening on 127.0.0.1:64477
+1662568298543	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "64478" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileiixEes"
+1662568299224	Marionette	INFO	Marionette enabled
+1662568299292	Marionette	INFO	Listening on port 64483
+WebDriver BiDi listening on ws://localhost:64478
+1662568299818	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileiixEes/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:64478/devtools/browser/db4fdd2d-d5e0-4a83-aac4-d673e86a60ca
+1662568301923	Marionette	INFO	Stopped listening on port 64483
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662568667008	geckodriver	INFO	Listening on 127.0.0.1:64608
+1662568667524	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "64609" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileDtqT8b"
+1662568668352	Marionette	INFO	Marionette enabled
+1662568668394	Marionette	INFO	Listening on port 64617
+WebDriver BiDi listening on ws://localhost:64609
+1662568668765	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofileDtqT8b/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:64609/devtools/browser/3ae9a749-e173-49e8-b3ed-f7d83c2fe9b0
+1662568670764	Marionette	INFO	Stopped listening on port 64617
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662569551386	geckodriver	INFO	Listening on 127.0.0.1:64757
+1662569551399	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "64758" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile1kxp5X"
+1662569552210	Marionette	INFO	Marionette enabled
+1662569552252	Marionette	INFO	Listening on port 64763
+WebDriver BiDi listening on ws://localhost:64758
+1662569552641	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofile1kxp5X/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:64758/devtools/browser/6e2edd0b-146c-4bf5-9f30-854f4a98675b
+1662569554872	Marionette	INFO	Stopped listening on port 64763
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1662569593778	geckodriver	INFO	Listening on 127.0.0.1:64793
+1662569594293	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "64794" "-foreground" "-no-remote" "-profile" "/var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofilexris4s"
+1662569594802	Marionette	INFO	Marionette enabled
+1662569594868	Marionette	INFO	Listening on port 64802
+WebDriver BiDi listening on ws://localhost:64794
+1662569595335	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/w8/mw87n09d44qc74l81l1775ww0000gn/T/rust_mozprofilexris4s/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:64794/devtools/browser/8e6d398f-89e3-4b6b-9207-57598a13f7dd
+1662569597485	Marionette	INFO	Stopped listening on port 64802
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 60: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
