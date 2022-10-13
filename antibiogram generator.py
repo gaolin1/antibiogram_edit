@@ -89,6 +89,7 @@ def main():
     def generate_antibiogram_df(df, title_type, title_gp_or_gn):
         df = convert_to_num(df)
         df = convert_isolate_to_str(df)
+        df = swap_mssa(df)
         df = mask_combined(df, title_type)
         df = add_tag(df)
         df = flag_column(df, title_type, title_gp_or_gn)
@@ -115,6 +116,28 @@ def main():
         df['Isolates'] = df['Isolates'].astype(str)
         # print(df['Isolates'].head())
         return df
+
+    #replace string within df
+    def swap_mssa(df):
+        df = df.reset_index()
+        df = df.set_index("Name")
+        if "Staphylococcus aureus" in df.index:
+            df = df.reset_index()
+            df["Name"] = df["Name"].replace("Staphylococcus aureus", "Staphylococcus aureus MSSA")
+            df = df.set_index("Name")
+            mssa_poc, combined_poc = df.index.get_loc("Staphylococcus aureus MSSA"), df.index.get_loc("Staphylococcus aureus (includes mssa and mrsa)")
+            df = df.reset_index()
+            df_first = df.iloc[:mssa_poc]
+            df_last = df.iloc[combined_poc+1:]
+            combined = df.iloc[combined_poc]
+            mssa = df.iloc[mssa_poc]
+            df_first.loc["Staphylococcus aureus (includes mssa and mrsa)"] = combined
+            df_first.loc["Staphylococcus aureus MSSA"] = mssa
+            df = pd.concat([df_first,df_last],ignore_index=True)
+            df = df.set_index("Name")
+            return df
+        else:
+            return df
 
     #this function masks the cell based on the row and column labels
     def mask_combined(df, title_type):
