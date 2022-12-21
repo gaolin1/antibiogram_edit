@@ -1,21 +1,33 @@
 ### *Requirements*
 * Python 3 (tested on versions 3.9 and 3.10 on mac)
-* Required packages:
-1. [pandas](https://pandas.pydata.org/docs/getting_started/install.html) (install command: `pip install pandas`)
-2. [selenium](https://selenium-python.readthedocs.io/installation.html) (install command: `pip install selenium`)
+* Required packages (to manually install packages, follow the install command specified on package websites, otherwise recommend using the install.py script below):
+1. [pandas](https://pandas.pydata.org/docs/getting_started/install.html)
+2. [selenium](https://selenium-python.readthedocs.io/installation.html)
 3. [pillow](https://pillow.readthedocs.io/en/stable/installation.html) (install command: please refer to the library website for instruction per os)
-4. [openpyxl](https://openpyxl.readthedocs.io/en/stable/) (install command: `pip install openpyxl`)
-5. [msoffcypto](https://github.com/nolze/msoffcrypto-tool) (install command: `pip install msoffcrypto-tool`)
-6. [numpy](https://numpy.org/install/) (install command: `pip install numpy`)
-7. [tkinter](https://docs.python.org/3/library/tkinter.html) (install command: `pip install tk`)
-8. [PySimpleGUI](https://www.pysimplegui.org/en/latest/) (install command: `pip install pysimplegui`)
+4. [openpyxl](https://openpyxl.readthedocs.io/en/stable/)
+5. [msoffcypto](https://github.com/nolze/msoffcrypto-tool)
+6. [numpy](https://numpy.org/install/)
+7. [matplotlib](https://matplotlib.org/stable/users/installing/index.html)
+8. [PySimpleGUI](https://www.pysimplegui.org/en/latest/)
+9. [opencv_python](https://pypi.org/project/opencv-python/)
+10. [pdfkit](https://pypi.org/project/pdfkit/)
+11. [webdriver_manager](https://pypi.org/project/webdriver-manager/)
+---
+### *Installation Steps*
+1. install the latest version of Python (https://www.python.org/downloads/)
+2. Download the latest release from this repository
+* <img width="1248" alt="image" src="https://user-images.githubusercontent.com/28236780/208823973-ef87470e-5993-4574-8db2-4a929ee17d9f.png">
+3. Click on (source code (zip)) to download the folder
+* <img width="631" alt="image" src="https://user-images.githubusercontent.com/28236780/208824341-aed1ca38-aad5-4808-b8b1-ba7a172b381f.png">
+4. unzip the files, then right click on install.py and select launch with python
+5. after the installation is completed, right click on antibiogram generator.py and select launch with python
 - Additional required program: 
   - browser for rendering: [Firefox](https://www.mozilla.org/en-CA/firefox/products/) (only browser to support sideway rotation)
     - recommend rendering running script on mac if available to match rendering on the sample output file 
   - webdriver: install [geckodriver](https://github.com/mozilla/geckodriver/releases) for mac (copy to /usr/local/bin/) or windows (copy to Python/Scripts)
 ---
 ### *Intended Use*
-This script has one main function: take the Epic exported antibiogram file and performs data transformation (e.g. puts data in table form, add footer and header etc.), finally ouputs with firefox engine for a png file within the same directory.
+This script'smain function: take the Epic exported antibiogram file and performs data transformation (e.g. puts data in table form, add footer and header etc.), finally ouputs with firefox engine for a png file within the same directory.
 
 ---
 ### *Running the script*
