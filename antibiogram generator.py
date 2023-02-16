@@ -466,7 +466,8 @@ def main():
     hhs_location_choices = [
         'Hospital-Wide',
         'ICU',
-        'CF Clinic' 
+        'CF Clinic',
+        "Other"
     ]
 
     hhs_type_choices = [
@@ -490,6 +491,8 @@ def main():
             [[sg.Radio(text, "SITE", enable_events=True, key=f"SITE {i}")] for i, text in enumerate(hospital_choices)],
             [sg.Text("Choose Location", text_color="yellow")],
             [[sg.Radio(text, "LOC", enable_events=True, key=f"LOC {i}")] for i, text in enumerate(hhs_location_choices)],
+            [sg.Text("For other locations, please enter below")],
+            [sg.InputText(key="-other_loc-")],
             [sg.Text("Choose Type", text_color="yellow")],
             [[sg.Radio(text, "TYPE", enable_events=True, key=f"TYPE {i}")] for i, text in enumerate(hhs_type_choices)],
             [sg.Text("Choose one of the following (*applies to non-Strep antibiograms only)", text_color="yellow")],
@@ -526,6 +529,10 @@ def main():
 
     while True:
         window, event, values = sg.read_all_windows()
+        #print(window["SITE 0"].TKIntVar.get()) to get initial positions (parameter 4 of get_selected_var)
+        #print(window["LOC 0"].TKIntVar.get())
+        #print(window["TYPE 0"].TKIntVar.get())
+        #print(window["GP_OR_GN 0"].TKIntVar.get())
         if event in (sg.WIN_CLOSED, 'Exit', 'Cancel'):
             window.close()
             if window == window2:       # if closing win 2, mark as closed
@@ -536,9 +543,11 @@ def main():
             title_year = values["-YEAR-"]
             title_site = get_selected_var(window, hospital_choices, "SITE 0", 4)
             title_location = get_selected_var(window, hhs_location_choices, "LOC 0", 11)
+            if title_location == "Other":
+                title_location = values["-other_loc-"]
             title_location = " <br>" + title_location
-            title_type = get_selected_var(window, hhs_type_choices, "TYPE 0", 16)
-            input_gp_or_gn = get_selected_var(window, gp_or_gn_choices, "GP_OR_GN 0", 24)
+            title_type = get_selected_var(window, hhs_type_choices, "TYPE 0", 19)
+            input_gp_or_gn = get_selected_var(window, gp_or_gn_choices, "GP_OR_GN 0", 27)
             title_gp_or_gn = skip_if_strep(title_type, input_gp_or_gn)
             title = title_year + " " + title_site + title_location + title_type + title_gp_or_gn + ' Antibiogram'
             df = import_df(values["-FILE_PATH-"], values["-PWD-"])
